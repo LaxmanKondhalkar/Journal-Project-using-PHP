@@ -26,7 +26,7 @@
                                       
                                 <a href="#" class="footer-links d-block mb-3">
                                     <span class="me-2">
-                                        <img src="./images/phone-solid.svg" class="link-icon" alt="phone">
+                                        <img src="./assets/images/phone-solid.svg" class="link-icon" alt="phone">
                                     </span> 
                                     <span class="fs-5 contact-items">
                                         +91 332 2348 981
@@ -35,7 +35,7 @@
 
                                 <a href="#" class="footer-links d-block mb-3">
                                     <span class="me-3">
-                                        <img src="./images/envelope-solid.svg" class="link-icon" alt="phone">
+                                        <img src="./assets/images/envelope-solid.svg" class="link-icon" alt="phone">
                                     </span> 
                                     <span class="fs-5 contact-items">
                                         onlineJournal64@gmail.com
@@ -44,7 +44,7 @@
 
                                 <a href="#" class="footer-links d-block mb-3">
                                     <span class="me-3">
-                                        <img src="./images/instagram-brands.svg" class="link-icon" alt="phone">
+                                        <img src="./assets/images/instagram-brands.svg" class="link-icon" alt="phone">
                                     </span> 
                                     <span class="fs-5 contact-items">
                                         @Online-journal
@@ -53,7 +53,7 @@
 
                                 <a href="#" class="footer-links d-block mb-3">
                                     <span class="me-3">
-                                        <img src="./images/facebook-brands.svg" class="link-icon" alt="phone">
+                                        <img src="./assets/images/facebook-brands.svg" class="link-icon" alt="phone">
                                     </span> 
                                     <span class="fs-5 contact-items">
                                         Online Journal
@@ -62,7 +62,7 @@
 
                                 <a href="#" class="footer-links d-block mb-3">
                                     <span class="me-3">
-                                        <img src="./images/github-brands.svg" class="link-icon" alt="phone">
+                                        <img src="./assets/images/github-brands.svg" class="link-icon" alt="phone">
                                     </span> 
                                     <span class="fs-5 contact-items">
                                         Sunny-64

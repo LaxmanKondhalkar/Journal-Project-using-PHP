@@ -7,7 +7,7 @@
         <title>Bootstrap demo</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="assets/css/style.css">
     </head>
 
     <body>
@@ -36,22 +36,23 @@
                           
                             <li class="nav-item ">
                                 <a class="nav-link  px-4 fs-5 nav-anchor <?php echo ($page == "journals.php" ? "active-nav-link" : "" )?> " 
-                                    href="http://localhost/Journal%20project/journal.php">Journals</a>
+                                    href="http://localhost/Journal-Project-using-PHP/journal.php">Journals</a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link px-4 fs-5 nav-anchor <?php echo ($page == "diary.php" ? "active-nav-link" : "" )?>" href="http://localhost/Journal%20project/diary.php">Diary</a>
+                                <a class="nav-link px-4 fs-5 nav-anchor <?php echo ($page == "diary.php" ? "active-nav-link" : "" )?>" 
+                                href="http://localhost/Journal-Project-using-PHP/diary.php">Diary</a>
                             </li>
                             <li class="nav-item ">
                                 <a class="nav-link px-4  fs-5 nav-anchor <?php echo ($page == 'events.php' ? "active" :"" )?>" 
-                                href="http://localhost/Journal%20project/events.php">Events</a>
+                                href="http://localhost/Journal-Project-using-PHP/events.php">Events</a>
                             </li>
                             <li class="nav-item ">
                                 <a class="nav-link px-4 fs-5 nav-anchor <?php echo ($page == "QandA.php"? "active": "")?> "
-                                href="http://localhost/Journal%20project/QandA.php">Q&A</a>
+                                href="http://localhost/Journal-Project-using-PHP/QandA.php">Q&A</a>
                             </li>
                             <li class="nav-item ">
                                 <a class="nav-link px-4 fs-5 nav-anchor <?php echo ($page == "profile.php" ? "active" :"" )?> "
-                                href="http://localhost/Journal%20project/profile.php">Profile</a>
+                                href="http://localhost/Journal-Project-using-PHP/profile.php">Profile</a>
                             </li>
                         </ul>
 

@@ -20,7 +20,7 @@
             <div class="container c-p-container">
                 <div class="create-post-container p-4 d-flex ">
                     <div class="profile-icon-container offset-md-1">
-                        <img src="./images/Megumi Fushiguro.jpg" class="profile-icon" alt="icon">
+                        <img src="./assets/images/Megumi Fushiguro.jpg" class="profile-icon" alt="icon">
                     </div>
                     <div class="btn col-8 col-md-8 ms-5 text-center share-post-btn">
                         <p class="pt-1">Write a Journal</p>
@@ -38,7 +38,7 @@
                         <!-- user image and name -->
                         <div class="user-data d-flex justify-content-end me-5">
                             <div class="profile-img-under-post">
-                                <img src="./images/Megumi Fushiguro.jpg" class="profile-icon" alt="icon">
+                                <img src="./assets/images/Megumi Fushiguro.jpg" class="profile-icon" alt="icon">
                             </div>
                             <div class="user-name-j-post">
                                 <p class="pt-2 ps-3 userName">@megumi-Fushiguro</p>
