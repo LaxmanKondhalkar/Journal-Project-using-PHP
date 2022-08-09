@@ -3,20 +3,22 @@
                <div class="row">
                 <div class="contact-us-form col-11 col-md-5 ">
                     <h2 class="mb-3">Contact Us</h2>
-                    <form action="#">
-                        <div class="form-floating mb-3">
-                            <input type="name" class="form-control contactus-input" id="floatingInput" placeholder="Full Name">
-                            <label for="floatingInput">Full Name</label>
-                          </div>
-                          <div class="form-floating mb-3">
-                            <input type="email" class="form-control contactus-input" id="floatingEmail" placeholder="Email">
-                            <label for="floatingPassword">Email Address</label>
-                          </div>
-                          <div class="form-floating mb-3">
-                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-                            <label for="floatingTextarea">Message</label>
-                          </div>
-                    </form>
+                   
+                    <form>
+                        <div class="mb-3">           
+                          <input type="text" class="form-control" id="exampleInputText1" placeholder="Full Name">                  
+                        </div>
+                        <div class="mb-3">           
+                          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">                  
+                        </div>
+
+                        <div class=" mb-3">
+                            <textarea class="form-control" placeholder="Leave a Message here" id="contact-form-Textarea"></textarea>    
+                        </div>
+                       
+                       
+                        <button type="submit" class="btn contact-form-submit-btn">Submit</button>
+                      </form>
                 </div>
 
                 <div class="social-links col-10 col-md-5 offset-md-2 ">
@@ -73,7 +75,7 @@
                </div>
             </div>
            <div class="container-fluid">
-           <div class="row">
+           <div class="row mt-4">
                <div class="copyRight text-center text-light">
                     <p>copyright &copy; All rights Reserved.</p>
                 </div>
