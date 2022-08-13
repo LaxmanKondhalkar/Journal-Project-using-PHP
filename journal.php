@@ -58,8 +58,6 @@ require('./partials/header.php');
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 </section>
