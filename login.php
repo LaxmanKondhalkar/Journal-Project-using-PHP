@@ -46,19 +46,19 @@
                                 
                                     <div class=" mb-4">
                                         <label class="form-label " for="form3Example3">Email address</label>
-                                        <input type="email" id="form3Example3" class="form-control" />
+                                        <input type="email" id="form3Example3" name="email" class="form-control" />
                                     </div>
 
                                     <!-- Password input -->
                                     <div class=" mb-4">
                                         <label class="form-label " for="form3Example4">Password</label>
-                                        <input type="password" id="form3Example4" class="form-control" />
+                                        <input type="password" id="form3Example4" name="pass" class="form-control" />
                                     </div>
                                 
 
                                 <!-- Submit button -->
                                 <div class="row d-flex justify-content-around">
-                                    <button type="submit" class="btn btn-primary  mb-4 col-md-4">
+                                    <button type="submit" class="btn btn-primary mb-4 col-md-4" name="submit">
                                         Sign in
                                     </button>
                                     <div class="signup-text  mb-4 col-md-4">
@@ -68,9 +68,29 @@
                                     </div>
                                 </div>
 
-                                <!-- Register buttons -->
-
                             </form>
+                            <?php 
+                                    require('config.php');
+                                    if(isset($_POST['submit'])){
+                                        $email = $_POST['email']; 
+                                        $pass = $_POST['pass']; 
+                                        $q = "select * from `user`"; 
+                                        $result = mysqli_query($conn, $q); 
+                                       
+
+                                        echo $email; 
+                                        echo $pass; 
+                                       foreach($result as $user){
+                                        // print_r($user); 
+                                            if($email == $user['userEmail'] && $pass == $user['userPass']){
+                                                echo "<script> window.location.assign('journal.php')</script>";
+                                            }
+                                            else{
+                                                // echo "email or password is wrong try again"; 
+                                            }
+                                       }
+                                    }                        
+                                ?>
                         </div>
                     </div>
                 </div>

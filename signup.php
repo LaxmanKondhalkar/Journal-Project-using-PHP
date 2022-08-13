@@ -48,13 +48,13 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
-                                            <label class="form-label" for="form3Example1">First name</label>
+                                            <label class="form-label" for="form3Example1" pattern="[A-Za-z ]{1,}">First name</label>
                                             <input type="text" id="form3Example1" name="userFName" class="form-control" />
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
-                                            <label class="form-label" for="form3Example2">Last name</label>
+                                            <label class="form-label" for="form3Example2" pattern="[A-Za-z ]{1,}">Last name</label>
                                             <input type="text" id="form3Example2" name="userLName" class="form-control" />
                                         </div>
                                     </div>
@@ -64,7 +64,7 @@
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
                                             <label class="form-label" for="form3Example3">Phone</label>
-                                            <input type="phone" id="form3Example3" name="userPhone" class="form-control" />
+                                            <input type="phone" id="form3Example3" name="userPhone" class="form-control" pattern="{10}"/>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-4">
@@ -111,8 +111,7 @@
                                     <div class="signup-text  mb-4 col-md-4">
                                         <p class="mb-0">Already have an Account?</p>
                                         <a href="login.html">Sign in</a>
-                                        <!-- <p class="mb-0">Don't have an Account?</p>
-                                        <a href="">Sign up</a> -->
+                                        
                                     </div>
                                 </div>
                             </form>
@@ -143,8 +142,6 @@
                                     echo "insertion failed";
                                 }
                             }
-
-
                             ?>
 
 
