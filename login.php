@@ -76,10 +76,7 @@
                                         $pass = $_POST['pass']; 
                                         $q = "select * from `user`"; 
                                         $result = mysqli_query($conn, $q); 
-                                       
-
-                                        // echo $email."<br>"; 
-                                        // echo $pass; 
+       
                                        foreach($result as $user){
                                         // print_r($user); 
                                             if($email == $user['userEmail'] && $pass == $user['userPass']){
