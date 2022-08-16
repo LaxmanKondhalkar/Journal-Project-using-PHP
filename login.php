@@ -78,15 +78,16 @@
                                         $result = mysqli_query($conn, $q); 
                                        
 
-                                        echo $email; 
-                                        echo $pass; 
+                                        // echo $email."<br>"; 
+                                        // echo $pass; 
                                        foreach($result as $user){
                                         // print_r($user); 
                                             if($email == $user['userEmail'] && $pass == $user['userPass']){
-                                                echo "<script> window.location.assign('journal.php')</script>";
+                                                $uId = $user['user_id']; 
+                                                echo "<script> window.location.assign('journal.php?userId=$uId');</script>";
                                             }
                                             else{
-                                                // echo "email or password is wrong try again"; 
+                                                echo "email or password is wrong try again"; 
                                             }
                                        }
                                     }                        

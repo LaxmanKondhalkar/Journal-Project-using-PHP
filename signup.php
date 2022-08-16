@@ -137,7 +137,7 @@
                                 $result = mysqli_query($conn, $q); 
                              
                                 if ($result > 0) {
-                                    echo "Data Inserted";
+                                    echo "<script> windows.location.assign('login.php');</script> ";
                                 } else {
                                     echo "insertion failed";
                                 }
