@@ -4,9 +4,9 @@
 ?>
 
 <?php
-require 'config.php';
+require '../../config.php';
 
-$q = "select * from journals where status= pending";
+$q = "select * from journals where status= 'pending'";
 
 $result = mysqli_query($conn, $q);
 
@@ -28,7 +28,7 @@ foreach ($result as $journal) {
                                
                         ?>
                         <div class="profile-img-under-post">
-                            <img src="./userProfiles/<?php echo $value['userImage']; ?>" class="profile-icon" alt="icon">
+                            <img src="../../userProfiles/<?php echo $value['userImage']; ?>" class="profile-icon" alt="icon">
                         </div>
                         <div class="user-name-j-post">
                             <p class="pt-2 ps-3 userName">
@@ -62,7 +62,7 @@ foreach ($result as $journal) {
                 </div>
                 <div class="j-like-section offset-lg-1 mt-4 ">
                     <div class="btn j-like-btn d-flex align-items-center col-md-1 px-0">
-                        <img src="./assets/images/heart-solid.svg" class="j-like-btn-img" alt="like">
+                        <img src="../../assets/images/heart-solid.svg" class="j-like-btn-img" alt="like">
                         <p class="ms-2">Like</p>
                     </div>
                 </div>
