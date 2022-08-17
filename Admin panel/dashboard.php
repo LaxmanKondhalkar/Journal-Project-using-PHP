@@ -21,9 +21,9 @@ include 'assets/header.php';
       <div class="col-xs-12 col-md-4 mx-3 my-2">
         <div class="card">
           <div class="card-body text-center item-bg">
-            <h5 class="card-title">No. of pending Items</h5>
-            <p class="card-text">Pending &lt;Item name&gt;</p>
-            <a href="#" class="btn btn-primary go-to-item-btn">Go to Item</a>
+            <h5 class="card-title">4</h5>
+            <p class="card-text">Pending Journals</p>
+            <a href="/Journal-Project-using-PHP/Admin panel/pending_items/journals.php" class="btn btn-primary go-to-item-btn">Go to Item</a>
           </div>
         </div>
       </div>
@@ -31,8 +31,8 @@ include 'assets/header.php';
         <div class="card">
           <div class="card-body text-center item-bg">
             <h4 class="card-title">3</h4>
-            <p class="card-text">Pending Journals</p>
-            <a href="#" class="btn btn-primary go-to-item-btn">Go to Journals</a>
+            <p class="card-text">Pending Events</p>
+            <a href="/Journal-Project-using-PHP/Admin panel/pending_items/events.php" class="btn btn-primary go-to-item-btn">Go to Journals</a>
           </div>
         </div>
       </div>
@@ -43,8 +43,8 @@ include 'assets/header.php';
         <div class="card">
           <div class="card-body text-center item-bg">
             <h4 class="card-title">4</h4>
-            <p class="card-text">Pending Diaries</p>
-            <a href="#" class="btn btn-primary go-to-item-btn">Go to Diaries</a>
+            <p class="card-text">Pending Answers</p>
+            <a href="/Journal-Project-using-PHP/Admin panel/pending_items/Answers.php" class="btn btn-primary go-to-item-btn">Go to Diaries</a>
           </div>
         </div>
       </div>
@@ -53,24 +53,12 @@ include 'assets/header.php';
           <div class="card-body text-center item-bg">
             <h4 class="card-title">10</h4>
             <p class="card-text">Pending questions</p>
-            <a href="#" class="btn btn-primary go-to-item-btn">Go to Questions</a>
+            <a href="/Journal-Project-using-PHP/Admin panel/pending_items/questions.php" class="btn btn-primary go-to-item-btn">Go to Questions</a>
           </div>
         </div>
       </div>
     </div>
-    <!-- Third Row -->
-    <div class="row mt-5 d-flex justify-content-center ">
-      <div class="col-xs-12 col-md-4 mx-3 my-2">
-        <div class="card">
-          <div class="card-body text-center item-bg">
-            <h4 class="card-title">4</h4>
-            <p class="card-text">Pending Diaries</p>
-            <a href="#" class="btn btn-primary go-to-item-btn">Go to Diaries</a>
-          </div>
-        </div>
-      </div>
-
-    </div>
+  
 </section>
 
 

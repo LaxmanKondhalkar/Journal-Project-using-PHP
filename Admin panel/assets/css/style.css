@@ -14,18 +14,22 @@ header{
     background-color:#C1BDBD;
 
 }
-.active-nav-link{
-    color: #fff !important;
-    background-color: #534A4A;
-}
+
 .online-journal-txt{
    width: 110px;
    text-align: center;
 }
-.nav-anchor{
-    color: #000 !important;
+
+.nav-item a{
+    color: #000;
+ 
 }
-.nav-anchor:hover{
+.nav-item a:hover{
+    color: #fff !important;
+    background-color: #534A4A;
+}
+
+.active-nav-link{   
     color: #fff !important;
     background-color: #534A4A;
 }

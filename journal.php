@@ -57,7 +57,7 @@ require('./partials/header.php');
                             $date = date("y-m-d");
                             $title = (isset($_POST['journalTitle']) ? $_POST['journalTitle'] : "");
                             $description = (isset($_POST['journalDescription']) ? $_POST['journalDescription'] : "");
-                            $status = "Approved";
+                            $status = "pending";
                             $uId = $_GET['userId'];
 
                             if (isset($_POST['journalSubmit'])) {
@@ -65,11 +65,14 @@ require('./partials/header.php');
                                 $q = "Insert into `journals` (`date`,`title`,`description`, `status`, `user_id`) values ('$date','$title','$description', '$status', '$uId')";
 
                                 $result = mysqli_query($conn, $q);
-
+                                
                                 if ($result > 0) {
                                     echo "Journal Posted Successfully";
                                 } else {
-                                    echo "insertion failed <br>" . mysqli_error($conn);
+                                    echo "insertion failed <br>";
+                                    echo mysqli_error($conn); 
+                                    echo "<br>"; 
+                                    print_r($result); 
                                 }
                             }
                             ?>
@@ -85,7 +88,7 @@ require('./partials/header.php');
 <?php
 require 'config.php';
 
-$q = "select * from journals";
+$q = "select * from journals where status= 'approved'";
 
 $result = mysqli_query($conn, $q);
 

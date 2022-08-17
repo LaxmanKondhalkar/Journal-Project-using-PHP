@@ -39,9 +39,6 @@
                             <h2 class="fw-bold mb-5">Sign up now</h2>
 
 
-
-
-
                             <form action="" method="POST">
                                 <!-- 2 column grid layout with text inputs for the first and last names -->
 
@@ -64,24 +61,24 @@
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
                                             <label class="form-label" for="form3Example3">Phone</label>
-                                            <input type="phone" id="form3Example3" name="userPhone" class="form-control" pattern="{10}"/>
+                                            <input type="phone" id="form3Example3" name="userPhone" class="form-control" pattern="[7-9]{1}[0-9]{9}"/>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-4">
 
                                         <label for="gender" class="form-label">Gender</label>
                                         <div class="radioButtons">
-                                            <input class="form-check-input" type="radio" name="userGender" id="flexRadioDefault1">
+                                            <input class="form-check-input" type="radio" name="userGender" value="male" id="flexRadioDefault1">
                                             <label class="form-check-label me-2" for="flexRadioDefault1">
                                                 Male
                                             </label>
 
-                                            <input class="form-check-input" type="radio" name="userGender" id="flexRadioDefault1">
+                                            <input class="form-check-input" type="radio" name="userGender" value="female" id="flexRadioDefault1">
                                             <label class="form-check-label me-2" for="flexRadioDefault1">
                                                 Female
                                             </label>
 
-                                            <input class="form-check-input" type="radio" name="userGender" id="flexRadioDefault1">
+                                            <input class="form-check-input" type="radio" name="userGender" value= "other" id="flexRadioDefault1">
                                             <label class="form-check-label" for="flexRadioDefault1">
                                                 Other
                                             </label>
@@ -110,7 +107,7 @@
                                     </button>
                                     <div class="signup-text  mb-4 col-md-4">
                                         <p class="mb-0">Already have an Account?</p>
-                                        <a href="login.html">Sign in</a>
+                                        <a href="login.php">Sign in</a>
                                         
                                     </div>
                                 </div>
@@ -128,10 +125,10 @@
                                 $userPhone = $_POST['userPhone'];
                                 $userGender = $_POST['userGender'];
                                 $userStatus = 'unblocked';
-                                $userImage = "default-profile-icon-24.jpg";
+                                $userImage = "user.png";
 
 
-                                $q = "Insert into `user` (`userFName`,`userLName`,`userEmail`, `userPass`, `userPhone`, `userGender`, `userStatus`, `userImage`) values ('$userFName','$userLName','$userEmail', '$userPass', '$userPhone' , '$userGender' ,'$userStatus' ,'$userImage')";
+                                $q = "Insert into `user` (`UserFName`,`userLName`,`userEmail`, `userPass`, `userPhone`, `userGender`, `userStatus`, `userImage`) values ('$userFName','$userLName','$userEmail', '$userPass', '$userPhone' , '$userGender' ,'$userStatus' ,'$userImage')";
 
                                 // $conn = exec($q);
                                 $result = mysqli_query($conn, $q); 
@@ -140,6 +137,9 @@
                                     echo "<script> windows.location.assign('login.php');</script> ";
                                 } else {
                                     echo "insertion failed";
+                                    echo mysqli_error($conn); 
+                                    echo "<br>"; 
+                                    print_r($result); 
                                 }
                             }
                             ?>
