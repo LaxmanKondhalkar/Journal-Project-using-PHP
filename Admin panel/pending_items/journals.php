@@ -84,7 +84,8 @@ foreach ($result as $journal) {
                         $deleteQuery = "DELETE FROM journals WHERE journal_id='$jId'"; 
                         $fireDeleteQuery = mysqli_query($conn, $deleteQuery); 
                         if($fireDeleteQuery > 0){
-                            echo "Journal rejected";
+                            echo "Journal deleted";
+                            echo "<script> windows.location.reload(); </script>"; 
                         }else{
                             echo "booo!! Error".mysqli_error($conn); 
                         }                   

@@ -21,7 +21,19 @@ include 'assets/header.php';
       <div class="col-xs-12 col-md-4 mx-3 my-2">
         <div class="card">
           <div class="card-body text-center item-bg">
-            <h5 class="card-title">4</h5>
+            <?php 
+              require "../config.php"; 
+              $query = "select COUNT(*) from journals where status='pending'"; 
+              $fireQuery = mysqli_query($conn, $query);
+              foreach($fireQuery as $value){
+                // print_r($value); 
+            ?>
+            <h3 class="card-title">
+                <?php 
+                  echo $value['COUNT(*)']; 
+              }
+                ?>
+            </h3>
             <p class="card-text">Pending Journals</p>
             <a href="/Journal-Project-using-PHP/Admin panel/pending_items/journals.php" class="btn btn-primary go-to-item-btn">Go to Item</a>
           </div>

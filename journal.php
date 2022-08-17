@@ -49,32 +49,33 @@ require('./partials/header.php');
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary">Add images</button>
+                                    <!-- <button type="button" class="btn btn-secondary">Add images</button> -->
                                     <button type="submit" name="journalSubmit" class="btn btn-primary">Post</button>
                                 </div>
                             </form>
                             <?php
-                            $date = date("y-m-d");
-                            $title = (isset($_POST['journalTitle']) ? $_POST['journalTitle'] : "");
-                            $description = (isset($_POST['journalDescription']) ? $_POST['journalDescription'] : "");
-                            $status = "pending";
-                            $uId = $_GET['userId'];
+                                $date = date("y-m-d");
+                                $title = (isset($_POST['journalTitle']) ? $_POST['journalTitle'] : "");
+                                $description = (isset($_POST['journalDescription']) ? $_POST['journalDescription'] : "");
+                                $status = "pending";
+                                $uId = $_GET['userId'];
 
-                            if (isset($_POST['journalSubmit'])) {
-                                require "config.php";
-                                $q = "Insert into `journals` (`date`,`title`,`description`, `status`, `user_id`) values ('$date','$title','$description', '$status', '$uId')";
+                                if (isset($_POST['journalSubmit'])) {
+                                    require "config.php";
+                                    $q = "Insert into `journals` (`date`,`title`,`description`, `status`, `user_id`) values ('$date','$title','$description', '$status', '$uId')";
 
-                                $result = mysqli_query($conn, $q);
-                                
-                                if ($result > 0) {
-                                    echo "Journal Posted Successfully";
-                                } else {
-                                    echo "insertion failed <br>";
-                                    echo mysqli_error($conn); 
-                                    echo "<br>"; 
-                                    print_r($result); 
+                                    $result = mysqli_query($conn, $q);
+                                    
+                                    if ($result > 0) {
+                                        echo "Journal Posted Successfully";
+                                        echo "<script> windows.location.reload(); </script>"; 
+                                    } else {
+                                        echo "insertion failed <br>";
+                                        echo mysqli_error($conn); 
+                                        echo "<br>"; 
+                                        print_r($result); 
+                                    }
                                 }
-                            }
                             ?>
                         </div>
                     </div>
