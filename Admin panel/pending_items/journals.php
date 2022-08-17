@@ -1,6 +1,6 @@
-<?php 
-    $page = "journals.php"; 
-    include "../assets/header.php"; 
+<?php
+$page = "journals.php";
+include "../assets/header.php";
 ?>
 
 <?php
@@ -20,24 +20,24 @@ foreach ($result as $journal) {
                     <!-- user image and name -->
                     <div class="user-data d-flex justify-content-end me-5">
                         <?php
-                            $uId = $journal['user_id'];
-                            $query = "select UserFName,userLName,userImage from `user` WHERE user_id= $uId";
-                            $exec = mysqli_query($conn, $query);
+                        $uId = $journal['user_id'];
+                        $query = "select UserFName,userLName,userImage from `user` WHERE user_id= $uId";
+                        $exec = mysqli_query($conn, $query);
 
-                            foreach ($exec as $value) {
-                               
+                        foreach ($exec as $value) {
+
                         ?>
-                        <div class="profile-img-under-post">
-                            <img src="../../userProfiles/<?php echo $value['userImage']; ?>" class="profile-icon" alt="icon">
-                        </div>
-                        <div class="user-name-j-post">
-                            <p class="pt-2 ps-3 userName">
-                                <?php 
-                                    echo $value['UserFName'] . " " . $value['userLName'];
-                                    }
+                            <div class="profile-img-under-post">
+                                <img src="../../userProfiles/<?php echo $value['userImage']; ?>" class="profile-icon" alt="icon">
+                            </div>
+                            <div class="user-name-j-post">
+                                <p class="pt-2 ps-3 userName">
+                                <?php
+                                echo $value['UserFName'] . " " . $value['userLName'];
+                            }
                                 ?>
-                            </p>
-                        </div>
+                                </p>
+                            </div>
                     </div>
                     <!-- date of journal and options btn  -->
                     <div class="j-date-and-options d-flex col-sm-5 col-md-7 justify-content-end">
@@ -60,12 +60,36 @@ foreach ($result as $journal) {
                         <p><?php echo $journal['description']; ?></p>
                     </div>
                 </div>
-                <div class="j-like-section offset-lg-1 mt-4 ">
-                    <div class="btn j-like-btn d-flex align-items-center col-md-1 px-0">
-                        <img src="../../assets/images/heart-solid.svg" class="j-like-btn-img" alt="like">
-                        <p class="ms-2">Like</p>
+                <form class="j-like-section offset-lg-1 mt-5 row" action="" method="POST">
+                    <div class="d-flex align-items-center col-sm-6  px-0">
+                        <button name="<?php echo "approve".$journal['journal_id'];?>" type="submit" class="btn btn-primary">Approve</button>
                     </div>
-                </div>
+                    <div class="reject-btn d-flex justify-content-center col-sm-6  px-0">
+                        <button name="<?php echo "reject".$journal['journal_id'];?>" type="submit" class="btn btn-primary">Reject</button>
+                    </div>
+                </form>
+                <?php 
+                    if(isset($_POST["approve".$journal['journal_id']])){
+                        $jId = $journal['journal_id']; 
+                        $updateQuery = "UPDATE journals SET status='approved' WHERE journal_id='$jId'"; 
+                        $fireUpdateQuery = mysqli_query($conn, $updateQuery); 
+                        if($fireUpdateQuery > 0){
+                            echo "Journal Approved";
+                        }else{
+                            echo "booo!! Error".mysqli_error($conn); 
+                        }
+                    }
+                    else if(isset($_POST["reject".$journal['journal_id']])){
+                        $jId = $journal['journal_id']; 
+                        $deleteQuery = "DELETE FROM journals WHERE journal_id='$jId'"; 
+                        $fireDeleteQuery = mysqli_query($conn, $deleteQuery); 
+                        if($fireDeleteQuery > 0){
+                            echo "Journal rejected";
+                        }else{
+                            echo "booo!! Error".mysqli_error($conn); 
+                        }                   
+                    }
+                ?>
             </div>
         </div>
     </section>
