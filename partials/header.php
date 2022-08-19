@@ -43,15 +43,15 @@
                                 href="http://localhost/Journal-Project-using-PHP/diary.php">Diary</a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link px-4  fs-5 nav-anchor <?php echo ($page == 'events.php' ? "active" :"" )?>" 
+                                <a class="nav-link px-4  fs-5 nav-anchor <?php echo ($page == 'events.php' ? "active-nav-link" :"" )?>" 
                                 href="http://localhost/Journal-Project-using-PHP/events.php">Events</a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link px-4 fs-5 nav-anchor <?php echo ($page == "QandA.php"? "active": "")?> "
+                                <a class="nav-link px-4 fs-5 nav-anchor <?php echo ($page == "QandA.php"? "active-nav-link": "")?> "
                                 href="http://localhost/Journal-Project-using-PHP/QandA.php">Q&A</a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link px-4 fs-5 nav-anchor <?php echo ($page == "profile.php" ? "active" :"" )?> "
+                                <a class="nav-link px-4 fs-5 nav-anchor <?php echo ($page == "profile.php" ? "active-nav-link" :"" )?> "
                                 href="http://localhost/Journal-Project-using-PHP/profile.php">Profile</a>
                             </li>
                         </ul>

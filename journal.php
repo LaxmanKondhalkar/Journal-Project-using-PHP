@@ -1,6 +1,15 @@
 <?php
-$page = "journals.php";
-require('./partials/header.php');
+    $page = "journals.php";
+    $_uId = ""; 
+    session_start();
+
+    if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] != true){ 
+        header("location: login.php", true);
+        exit();
+    }
+    $uId = $_SESSION['userId'];
+ 
+    require('./partials/header.php');
 
 ?>
 <!-- title section -->
@@ -58,7 +67,6 @@ require('./partials/header.php');
                                 $title = (isset($_POST['journalTitle']) ? $_POST['journalTitle'] : "");
                                 $description = (isset($_POST['journalDescription']) ? $_POST['journalDescription'] : "");
                                 $status = "pending";
-                                $uId = $_GET['userId'];
 
                                 if (isset($_POST['journalSubmit'])) {
                                     require "config.php";
