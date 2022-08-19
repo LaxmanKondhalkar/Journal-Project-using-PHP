@@ -22,34 +22,60 @@ require('./partials/header.php');
             <div class="profile-icon-container offset-md-1">
                 <img src="./assets/images/Megumi Fushiguro.jpg" class="profile-icon" alt="icon">
             </div>
+
             <!-- Button trigger modal -->
             <button type="button" class="btn col-8 col-md-8 ms-5 text-center share-post-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Write a Diary
+                Write Today's Diary.
             </button>
 
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Tuesday, 9 Aug 2022</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Write Today's Diary.</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
+
                         <div class="modal-body">
                             <form action="" method="POST">
-                                <div class="mb-3">        
-                                    <input type="text" class="form-control" id="exampleInputText" placeholder="Title">
+                                <div class="mb-3">
+                                    <input type="text" name="journalTitle" class="form-control" id="exampleInputText" placeholder="Journal Title">
                                 </div>
                                 <div class="mb-3">
                                     <!-- <label for="message-text" class="col-form-label">Message:</label> -->
-                                    <textarea class="form-control" id="message-text" placeholder="Write here..."></textarea>
+                                    <textarea class="form-control" name="journalDescription" id="message-text" placeholder="Write journal here..."></textarea>
                                 </div>
 
                                 <div class="modal-footer">
-                                   
-                                    <button type="submit" class="btn btn-primary">Save</button>
+                                    <!-- <button type="button" class="btn btn-secondary">Add images</button> -->
+                                    <button type="submit" name="journalSubmit" class="btn btn-primary">Post</button>
                                 </div>
                             </form>
+                            <?php
+                                $date = date("y-m-d");
+                                $title = (isset($_POST['journalTitle']) ? $_POST['journalTitle'] : "");
+                                $description = (isset($_POST['journalDescription']) ? $_POST['journalDescription'] : "");
+                                $status = "pending";
+                                $uId = $_GET['userId'];
+
+                                if (isset($_POST['journalSubmit'])) {
+                                    require "config.php";
+                                    $q = "Insert into `journals` (`date`,`title`,`description`, `status`, `user_id`) values ('$date','$title','$description', '$status', '$uId')";
+
+                                    $result = mysqli_query($conn, $q);
+                                    
+                                    if ($result > 0) {
+                                        echo "Journal Posted Successfully";
+                                        echo "<script> windows.location.reload(); </script>"; 
+                                    } else {
+                                        echo "insertion failed <br>";
+                                        echo mysqli_error($conn); 
+                                        echo "<br>"; 
+                                        print_r($result); 
+                                    }
+                                }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -90,7 +116,6 @@ require('./partials/header.php');
                 </div>
             </div>
         </div>
-
     </div>
 </section>
 <?php
