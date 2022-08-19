@@ -22,8 +22,10 @@ foreach ($result as $user) {
             <div class="row">
                 <div class="col-lg-4">
                     <div class="card mb-4">
-                        <div class="card-body text-center">
-                            <img src="userProfiles/<?php echo $user['userImage']; ?>" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                        <div class="card-body text-center d-flex flex-column align-items-center">
+                            <div class="img-container " style="width : 150px; height : 150px; overflow: hidden;">
+                                <img src="userProfiles/<?php echo $user['userImage']; ?>" alt="avatar" class="rounded-circle img-fluid" style="width: 150px; overflow : hidden;">
+                            </div>
                             <h5 class="my-3"><?php echo $user['UserFName'] . " " . $user['userLName'];  ?></h5>
 
 
@@ -58,7 +60,7 @@ foreach ($result as $user) {
                                                     $updateQuery = "UPDATE user SET userImage='$newName' where user_id= $uId";
                                                     $exec = mysqli_query($conn, $updateQuery);
                                                     if($exec > 0){
-                                                        move_uploaded_file($location,'userProfiles/'.$newname);
+                                                        move_uploaded_file($location,'userProfiles/'.$newName);
                                                     }
                                                     else{
                                                         echo "Error".mysqli_error($conn);

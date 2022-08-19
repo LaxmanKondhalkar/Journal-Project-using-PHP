@@ -30,7 +30,7 @@
     <div class="container c-p-container">
         <div class="create-post-container p-4 d-flex ">
             <div class="profile-icon-container offset-md-1">
-                <img src="./assets/images/Megumi Fushiguro.jpg" class="profile-icon" alt="icon">
+                <img src="./assets/images/Megumi Fushiguro.jpg" class="profile-icon rounded-circle img-fluid" alt="icon">
             </div>
 
             <!-- Button trigger modal -->
@@ -118,11 +118,11 @@ foreach ($result as $journal) {
                             foreach ($exec as $value) {
                                
                         ?>
-                        <div class="profile-img-under-post">
-                            <img src="./userProfiles/<?php echo $value['userImage']; ?>" class="profile-icon" alt="icon">
+                        <div class="profile-icon-container">
+                            <img src="userProfiles/<?php echo $value['userImage']; ?>" class="profile-icon" alt="icon">
                         </div>
                         <div class="user-name-j-post">
-                            <p class="pt-2 ps-3 userName">
+                            <p class="pt-2 ps-3 userName fw-semibold">
                                 <?php 
                                     echo $value['UserFName'] . " " . $value['userLName'];
                                     }

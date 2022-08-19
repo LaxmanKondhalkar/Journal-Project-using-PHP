@@ -45,10 +45,14 @@ header{
 
 }
 
-.profile-icon{
+.profile-icon-container{
     width: 50px;
     height: 50px;
     border-radius: 50%;
+}
+.profile-icon{
+    width: 50px;
+    /* height: 50px; */
     background-color: #A4A2A2;
     
 }
@@ -62,11 +66,7 @@ header{
 
 /* Post Section */
 
-.profile-icon-j-post{
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-}
+
 
 .j-post{
     background-color: #D9D9D9;
