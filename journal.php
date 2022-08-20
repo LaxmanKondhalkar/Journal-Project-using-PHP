@@ -1,6 +1,5 @@
 <?php
     $page = "journals.php";
-    $_uId = ""; 
     session_start();
 
     if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] != true){ 
@@ -10,6 +9,7 @@
     $uId = $_SESSION['userId'];
  
     require('./partials/header.php');
+    require "config.php"; 
 
 ?>
 <!-- title section -->
@@ -30,7 +30,12 @@
     <div class="container c-p-container">
         <div class="create-post-container p-4 d-flex ">
             <div class="profile-icon-container offset-md-1">
-                <img src="./assets/images/Megumi Fushiguro.jpg" class="profile-icon rounded-circle img-fluid" alt="icon">
+                <?php 
+                    $selectUserImg = "SELECT userImage FROM user WHERE user_id = $uId";
+                    $fireQuery = mysqli_query($conn, $selectUserImg);
+                    foreach($fireQuery as $userImage){
+                ?>
+                <img src="./userProfiles/<?php echo $userImage['userImage']; } ?>" class="profile-icon rounded-circle img-fluid" alt="icon">
             </div>
 
             <!-- Button trigger modal -->
@@ -50,11 +55,11 @@
                         <div class="modal-body">
                             <form action="" method="POST">
                                 <div class="mb-3">
-                                    <input type="text" name="journalTitle" class="form-control" id="exampleInputText" placeholder="Journal Title">
+                                    <input type="text" name="journalTitle" spellcheck="false" class="form-control" id="exampleInputText" placeholder="Journal Title">
                                 </div>
                                 <div class="mb-3">
                                     <!-- <label for="message-text" class="col-form-label">Message:</label> -->
-                                    <textarea class="form-control" name="journalDescription" id="message-text" placeholder="Write journal here..."></textarea>
+                                    <textarea class="form-control" spellcheck="false" name="journalDescription" id="message-text" placeholder="Write journal here..."></textarea>
                                 </div>
 
                                 <div class="modal-footer">
@@ -81,7 +86,7 @@
                                         echo "insertion failed <br>";
                                         echo mysqli_error($conn); 
                                         echo "<br>"; 
-                                        print_r($result); 
+                                     
                                     }
                                 }
                             ?>
@@ -119,7 +124,7 @@ foreach ($result as $journal) {
                                
                         ?>
                         <div class="profile-icon-container">
-                            <img src="userProfiles/<?php echo $value['userImage']; ?>" class="profile-icon" alt="icon">
+                            <img src="userProfiles/<?php echo $value['userImage']; ?>" class="profile-icon img-fluid" alt="icon">
                         </div>
                         <div class="user-name-j-post">
                             <p class="pt-2 ps-3 userName fw-semibold">

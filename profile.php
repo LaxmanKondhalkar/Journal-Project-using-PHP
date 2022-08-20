@@ -26,7 +26,7 @@ foreach ($result as $user) {
                             <div class="img-container " style="width : 150px; height : 150px; overflow: hidden;">
                                 <img src="userProfiles/<?php echo $user['userImage']; ?>" alt="avatar" class="rounded-circle img-fluid" style="width: 150px; overflow : hidden;">
                             </div>
-                            <h5 class="my-3"><?php echo $user['UserFName'] . " " . $user['userLName'];  ?></h5>
+                            <h5 class="mb-3 mt-1"><?php echo $user['UserFName'] . " " . $user['userLName'];  ?></h5>
 
 
                             <!-- Button trigger modal -->
@@ -110,13 +110,14 @@ foreach ($result as $user) {
                                     <p class="mb-0">Gender</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0"><?php echo $user['userGender'];
-                                                            } ?></p>
+                                    <p class="text-muted mb-0"><?php echo $user['userGender'];} ?></p>
                                 </div>
                             </div>
-
                         </div>
                     </div>
+                </div>
+                <div class="row">
+                    
                 </div>
                 <form class="row  d-flex justify-content-center align-center mt-5" action="" method="GET">
                     <button class="btn btn-primary logout-btn  col-md-6" name="logout" type="submit">Logout</button>

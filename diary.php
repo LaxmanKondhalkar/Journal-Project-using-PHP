@@ -1,6 +1,15 @@
 <?php
-$page = "diary.php";
-require('./partials/header.php');
+    $page = "diary.php";
+    session_start();
+
+    if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] != true){ 
+        header("location: login.php", true);
+        exit();
+    }
+    $uId = $_SESSION['userId'];
+ 
+    require('./partials/header.php');
+    require "config.php"; 
 
 ?>
 <!-- title section -->
@@ -19,8 +28,13 @@ require('./partials/header.php');
 <section id="create-post" class="my-4 p-4">
     <div class="container c-p-container">
         <div class="create-post-container p-4 d-flex ">
-            <div class="profile-icon-container offset-md-1">
-                <img src="./assets/images/Megumi Fushiguro.jpg" class="profile-icon" alt="icon">
+        <div class="profile-icon-container offset-md-1">
+                <?php 
+                    $selectUserImg = "SELECT userImage FROM user WHERE user_id = $uId";
+                    $fireQuery = mysqli_query($conn, $selectUserImg);
+                    foreach($fireQuery as $userImage){
+                ?>
+                <img src="./userProfiles/<?php echo $userImage['userImage']; } ?>" class="profile-icon rounded-circle img-fluid" alt="icon">
             </div>
 
             <!-- Button trigger modal -->
@@ -40,33 +54,31 @@ require('./partials/header.php');
                         <div class="modal-body">
                             <form action="" method="POST">
                                 <div class="mb-3">
-                                    <input type="text" name="journalTitle" class="form-control" id="exampleInputText" placeholder="Journal Title">
+                                    <input type="text" name="diaryTitle" class="form-control" id="exampleInputText" spellcheck="false" placeholder="Diary Title">
                                 </div>
                                 <div class="mb-3">
                                     <!-- <label for="message-text" class="col-form-label">Message:</label> -->
-                                    <textarea class="form-control" name="journalDescription" id="message-text" placeholder="Write journal here..."></textarea>
+                                    <textarea class="form-control" name="diaryDesc" id="message-text" spellcheck="false" placeholder="Write here..."></textarea>
                                 </div>
 
                                 <div class="modal-footer">
                                     <!-- <button type="button" class="btn btn-secondary">Add images</button> -->
-                                    <button type="submit" name="journalSubmit" class="btn btn-primary">Post</button>
+                                    <button type="submit" name="diarySubmit" class="btn btn-primary">Post</button>
                                 </div>
                             </form>
                             <?php
                                 $date = date("y-m-d");
-                                $title = (isset($_POST['journalTitle']) ? $_POST['journalTitle'] : "");
-                                $description = (isset($_POST['journalDescription']) ? $_POST['journalDescription'] : "");
-                                $status = "pending";
-                                $uId = $_GET['userId'];
+                                $title = (isset($_POST['diaryTitle']) ? $_POST['diaryTitle'] : "");
+                                $description = (isset($_POST['diaryDesc']) ? $_POST['diaryDesc'] : "");
 
-                                if (isset($_POST['journalSubmit'])) {
+                                if (isset($_POST['diarySubmit'])) {
                                     require "config.php";
-                                    $q = "Insert into `journals` (`date`,`title`,`description`, `status`, `user_id`) values ('$date','$title','$description', '$status', '$uId')";
+                                    $q = "Insert into `diary` (`date`,`title`,`description`, `user_id`) values ('$date','$title','$description', '$uId')";
 
                                     $result = mysqli_query($conn, $q);
                                     
                                     if ($result > 0) {
-                                        echo "Journal Posted Successfully";
+                                        echo "Diary Added Successfully";
                                         echo "<script> windows.location.reload(); </script>"; 
                                     } else {
                                         echo "insertion failed <br>";
@@ -84,6 +96,14 @@ require('./partials/header.php');
     </div>
 </section>
 
+
+<?php 
+require "config.php"; 
+
+$query = "select * from diary where user_id=$uId";
+$result = mysqli_query($conn, $query); 
+foreach($result as $diary){
+?>
 <!-- Posts Section -->
 <section id="journal-posts" class="my-4 p-4">
     <div class="container j-container ">
@@ -92,10 +112,10 @@ require('./partials/header.php');
             <div class="j-post-header d-flex offset-lg-1">
                 <!-- user image and name -->
                 <div class="user-data d-flex justify-content-end me-5">
-                   <h3>1/11/11</h3>
+                   <h3><?php echo $diary['date']; ?></h3>
                 </div>
                 <!-- date of journal and options btn  -->
-                <div class="j-date-and-options d-flex col-sm-9 col-md-10 justify-content-end">
+                <div class="j-date-and-options d-flex col-sm-9 col-md-9 justify-content-end">
                     <!-- <div class="date d-flex  me-5">
                                 <p class="pt-2">1/1/11</p>
                             </div> -->
@@ -109,10 +129,10 @@ require('./partials/header.php');
             <!-- Journal title and content. -->
             <div class="journal-title-and-content col-lg-10 offset-lg-1 mt-4">
                 <div class="journal-title">
-                    <h5>This will be title of the Diary</h5>
+                    <h5><?php echo $diary['title'];  ?></h5>
                 </div>
                 <div class="journal-content">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae nisi ut dolore totam modi fugiat repellat temporibus ex itaque necessitatibus maxime impedit amet delectus atque voluptatum non, debitis facere! Culpa, at incidunt! Dicta? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni vero architecto illum laudantium veritatis officiis doloremque ipsa praesentium esse! Fuga?</p>
+                    <p><?php echo $diary['description']; } ?></p>
                 </div>
             </div>
         </div>
