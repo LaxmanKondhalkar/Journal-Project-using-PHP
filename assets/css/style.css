@@ -150,7 +150,10 @@ footer{
 
 /* Diary Page. */
 
-
+.drop-down-element{
+    text-decoration: none !important;
+    color: #000 !important;
+}
 
 
 

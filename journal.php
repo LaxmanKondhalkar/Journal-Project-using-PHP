@@ -1,15 +1,15 @@
 <?php
-    $page = "journals.php";
-    session_start();
+$page = "journals.php";
+session_start();
 
-    if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] != true){ 
-        header("location: login.php", true);
-        exit();
-    }
-    $uId = $_SESSION['userId'];
- 
-    require('./partials/header.php');
-    require "config.php"; 
+if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] != true) {
+    header("location: login.php", true);
+    exit();
+}
+$uId = $_SESSION['userId'];
+
+require('./partials/header.php');
+require "config.php";
 
 ?>
 <!-- title section -->
@@ -25,19 +25,27 @@
 </section>
 
 <!-- content section -->
-
+<?php
+    if(isset($_GET['msg'])){
+        ?>
+        <div class="col-12 alert alert-success my-3"> Journal Posted Successfully.
+</div>
+        <?php
+    }
+?>
 <section id="create-post" class="my-4 p-4">
     <div class="container c-p-container">
         <div class="create-post-container p-4 d-flex ">
             <div class="profile-icon-container offset-md-1">
-                <?php 
-                    $selectUserImg = "SELECT userImage FROM user WHERE user_id = $uId";
-                    $fireQuery = mysqli_query($conn, $selectUserImg);
-                    foreach($fireQuery as $userImage){
+                <?php
+                $selectUserImg = "SELECT userImage FROM user WHERE user_id = $uId";
+                $fireQuery = mysqli_query($conn, $selectUserImg);
+                foreach ($fireQuery as $userImage) {
                 ?>
-                <img src="./userProfiles/<?php echo $userImage['userImage']; } ?>" class="profile-icon rounded-circle img-fluid" alt="icon">
+                    <img src="./userProfiles/<?php echo $userImage['userImage'];
+                                            } ?>" class="profile-icon rounded-circle img-fluid" alt="icon">
             </div>
-
+            
             <!-- Button trigger modal -->
             <button type="button" class="btn col-8 col-md-8 ms-5 text-center share-post-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Write a journal
@@ -68,27 +76,26 @@
                                 </div>
                             </form>
                             <?php
-                                $date = date("y-m-d");
-                                $title = (isset($_POST['journalTitle']) ? $_POST['journalTitle'] : "");
-                                $description = (isset($_POST['journalDescription']) ? $_POST['journalDescription'] : "");
-                                $status = "pending";
+                            $date = date("y-m-d");
+                            $title = (isset($_POST['journalTitle']) ? $_POST['journalTitle'] : "");
+                            $description = (isset($_POST['journalDescription']) ? $_POST['journalDescription'] : "");
+                            $status = "pending";
 
-                                if (isset($_POST['journalSubmit'])) {
-                                    require "config.php";
-                                    $q = "Insert into `journals` (`date`,`title`,`description`, `status`, `user_id`) values ('$date','$title','$description', '$status', '$uId')";
+                            if (isset($_POST['journalSubmit'])) {
+                                require "config.php";
+                                $q = "Insert into `journals` (`date`,`title`,`description`, `status`, `user_id`) values ('$date','$title','$description', '$status', '$uId')";
 
-                                    $result = mysqli_query($conn, $q);
-                                    
-                                    if ($result > 0) {
-                                        echo "Journal Posted Successfully";
-                                        echo "<script> windows.location.reload(); </script>"; 
-                                    } else {
-                                        echo "insertion failed <br>";
-                                        echo mysqli_error($conn); 
-                                        echo "<br>"; 
-                                     
-                                    }
+                                $result = mysqli_query($conn, $q);
+
+                                if ($result > 0) {
+                                    //echo "Journal Posted Successfully";
+                                    echo "<script>window.location.assign('journal.php?msg');</script>";
+                                } else {
+                                    echo "insertion failed <br>";
+                                    echo mysqli_error($conn);
+                                    echo "<br>";
                                 }
+                            }
                             ?>
                         </div>
                     </div>
@@ -116,24 +123,24 @@ foreach ($result as $journal) {
                     <!-- user image and name -->
                     <div class="user-data d-flex justify-content-end me-5">
                         <?php
-                            $uId = $journal['user_id'];
-                            $query = "select UserFName,userLName,userImage from `user` WHERE user_id= $uId";
-                            $exec = mysqli_query($conn, $query);
+                        $uId = $journal['user_id'];
+                        $query = "select UserFName,userLName,userImage from `user` WHERE user_id= $uId";
+                        $exec = mysqli_query($conn, $query);
 
-                            foreach ($exec as $value) {
-                               
+                        foreach ($exec as $value) {
+
                         ?>
-                        <div class="profile-icon-container">
-                            <img src="userProfiles/<?php echo $value['userImage']; ?>" class="profile-icon img-fluid" alt="icon">
-                        </div>
-                        <div class="user-name-j-post">
-                            <p class="pt-2 ps-3 userName fw-semibold">
-                                <?php 
-                                    echo $value['UserFName'] . " " . $value['userLName'];
-                                    }
+                            <div class="profile-icon-container">
+                                <img src="userProfiles/<?php echo $value['userImage']; ?>" class="profile-icon img-fluid" alt="icon">
+                            </div>
+                            <div class="user-name-j-post">
+                                <p class="pt-2 ps-3 userName fw-semibold">
+                                <?php
+                                echo $value['UserFName'] . " " . $value['userLName'];
+                            }
                                 ?>
-                            </p>
-                        </div>
+                                </p>
+                            </div>
                     </div>
                     <!-- date of journal and options btn  -->
                     <div class="j-date-and-options d-flex col-sm-5 col-md-7 justify-content-end">

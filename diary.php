@@ -1,15 +1,15 @@
 <?php
-    $page = "diary.php";
-    session_start();
+$page = "diary.php";
+session_start();
 
-    if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] != true){ 
-        header("location: login.php", true);
-        exit();
-    }
-    $uId = $_SESSION['userId'];
- 
-    require('./partials/header.php');
-    require "config.php"; 
+if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] != true) {
+    header("location: login.php", true);
+    exit();
+}
+$uId = $_SESSION['userId'];
+
+require('./partials/header.php');
+require "config.php";
 
 ?>
 <!-- title section -->
@@ -28,13 +28,14 @@
 <section id="create-post" class="my-4 p-4">
     <div class="container c-p-container">
         <div class="create-post-container p-4 d-flex ">
-        <div class="profile-icon-container offset-md-1">
-                <?php 
-                    $selectUserImg = "SELECT userImage FROM user WHERE user_id = $uId";
-                    $fireQuery = mysqli_query($conn, $selectUserImg);
-                    foreach($fireQuery as $userImage){
+            <div class="profile-icon-container offset-md-1">
+                <?php
+                $selectUserImg = "SELECT userImage FROM user WHERE user_id = $uId";
+                $fireQuery = mysqli_query($conn, $selectUserImg);
+                foreach ($fireQuery as $userImage) {
                 ?>
-                <img src="./userProfiles/<?php echo $userImage['userImage']; } ?>" class="profile-icon rounded-circle img-fluid" alt="icon">
+                    <img src="./userProfiles/<?php echo $userImage['userImage'];
+                                            } ?>" class="profile-icon rounded-circle img-fluid" alt="icon">
             </div>
 
             <!-- Button trigger modal -->
@@ -67,26 +68,26 @@
                                 </div>
                             </form>
                             <?php
-                                $date = date("y-m-d");
-                                $title = (isset($_POST['diaryTitle']) ? $_POST['diaryTitle'] : "");
-                                $description = (isset($_POST['diaryDesc']) ? $_POST['diaryDesc'] : "");
+                            $date = date("y-m-d");
+                            $title = (isset($_POST['diaryTitle']) ? $_POST['diaryTitle'] : "");
+                            $description = (isset($_POST['diaryDesc']) ? $_POST['diaryDesc'] : "");
 
-                                if (isset($_POST['diarySubmit'])) {
-                                    require "config.php";
-                                    $q = "Insert into `diary` (`date`,`title`,`description`, `user_id`) values ('$date','$title','$description', '$uId')";
+                            if (isset($_POST['diarySubmit'])) {
+                                require "config.php";
+                                $q = "Insert into `diary` (`date`,`title`,`description`, `user_id`) values ('$date','$title','$description', '$uId')";
 
-                                    $result = mysqli_query($conn, $q);
-                                    
-                                    if ($result > 0) {
-                                        echo "Diary Added Successfully";
-                                        echo "<script> windows.location.reload(); </script>"; 
-                                    } else {
-                                        echo "insertion failed <br>";
-                                        echo mysqli_error($conn); 
-                                        echo "<br>"; 
-                                        print_r($result); 
-                                    }
+                                $result = mysqli_query($conn, $q);
+
+                                if ($result > 0) {
+                                    echo "Diary Added Successfully";
+                                    echo "<script> windows.location.reload(); </script>";
+                                } else {
+                                    echo "insertion failed <br>";
+                                    echo mysqli_error($conn);
+                                    echo "<br>";
+                                    print_r($result);
                                 }
+                            }
                             ?>
                         </div>
                     </div>
@@ -97,47 +98,50 @@
 </section>
 
 
-<?php 
-require "config.php"; 
+<?php
+require "config.php";
 
 $query = "select * from diary where user_id=$uId";
-$result = mysqli_query($conn, $query); 
-foreach($result as $diary){
+$result = mysqli_query($conn, $query);
+foreach ($result as $diary) {
 ?>
-<!-- Posts Section -->
-<section id="journal-posts" class="my-4 p-4">
-    <div class="container j-container ">
-        <div class="j-post p-4 ">
-            <!-- Journal Post header section -->
-            <div class="j-post-header d-flex offset-lg-1">
-                <!-- user image and name -->
-                <div class="user-data d-flex justify-content-end me-5">
-                   <h3><?php echo $diary['date']; ?></h3>
+    <!-- Posts Section -->
+    <section id="journal-posts" class="my-4 p-4">
+        <div class="container j-container ">
+            <div class="j-post p-4 ">
+                <!-- Journal Post header section -->
+                <div class="j-post-header d-flex offset-lg-1">
+                    <!-- user image and name -->
+                    <div class="user-data d-flex justify-content-end me-5">
+                        <h3><?php echo $diary['date']; ?></h3>
+                    </div>
+                    <!-- date of journal and options btn  -->
+                    <div class="j-date-and-options d-flex col-sm-9 col-md-9 justify-content-end dropstart">
+                        <div class="options btn " data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="dots"></span>
+                            <span class="dots"></span>
+                            <span class="dots"></span>
+                        </div>
+                        <form class=" dropdown-menu text-center" method="POST">
+                            <li class="mb-2"><button type="submit" class="btn btn-light w-100">Edit</button></li>
+                            <li class="mb-2"><button type="submit" class="btn btn-light w-100">Delete</button></li>
+                        </form>
+                    </div>
                 </div>
-                <!-- date of journal and options btn  -->
-                <div class="j-date-and-options d-flex col-sm-9 col-md-9 justify-content-end">
-                    <!-- <div class="date d-flex  me-5">
-                                <p class="pt-2">1/1/11</p>
-                            </div> -->
-                    <div class="options btn">
-                        <span class="dots"></span>
-                        <span class="dots"></span>
-                        <span class="dots"></span>
+                <!-- Journal title and content. -->
+                <div class="journal-title-and-content col-lg-10 offset-lg-1 mt-4">
+                    <div class="journal-title">
+                        <h5><?php echo $diary['title'];  ?></h5>
+                    </div>
+                    <div class="journal-content">
+                        <p><?php echo $diary['description']; ?></p>
                     </div>
                 </div>
             </div>
-            <!-- Journal title and content. -->
-            <div class="journal-title-and-content col-lg-10 offset-lg-1 mt-4">
-                <div class="journal-title">
-                    <h5><?php echo $diary['title'];  ?></h5>
-                </div>
-                <div class="journal-content">
-                    <p><?php echo $diary['description']; } ?></p>
-                </div>
-            </div>
         </div>
-    </div>
-</section>
+    </section>
+
 <?php
+}
 require('./partials/footer.php');
 ?>
