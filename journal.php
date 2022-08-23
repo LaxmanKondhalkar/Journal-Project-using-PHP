@@ -67,7 +67,7 @@ require "config.php";
                                 </div>
                                 <div class="mb-3">
                                     <!-- <label for="message-text" class="col-form-label">Message:</label> -->
-                                    <textarea class="form-control" spellcheck="false" name="journalDescription" id="message-text" placeholder="Write journal here..."></textarea>
+                                    <textarea class="form-control" spellcheck="false" name="journalDescription" id="message-text" placeholder="Write journal here..." style="height:200px;"></textarea>
                                 </div>
 
                                 <div class="modal-footer">
@@ -76,7 +76,7 @@ require "config.php";
                                 </div>
                             </form>
                             <?php
-                            $date = date("y-m-d");
+                            $date = date('Y-m-d H:i:s');
                             $title = (isset($_POST['journalTitle']) ? $_POST['journalTitle'] : "");
                             $description = (isset($_POST['journalDescription']) ? $_POST['journalDescription'] : "");
                             $status = "pending";

@@ -24,7 +24,7 @@ foreach ($result as $user) {
                     <div class="card mb-4">
                         <div class="card-body text-center d-flex flex-column align-items-center">
                             <div class="img-container " style="width : 150px; height : 150px; overflow: hidden;">
-                                <img src="userProfiles/<?php echo $user['userImage']; ?>" alt="avatar" class="rounded-circle img-fluid" style="width: 150px; overflow : hidden;">
+                                <img src="userProfiles/<?php echo $user['userImage']; ?>" alt="avatar" class="avatar rounded-circle img-fluid" style="width: 150px; height: 150px; object-fit: cover;">
                             </div>
                             <h5 class="mb-3 mt-1"><?php echo $user['UserFName'] . " " . $user['userLName'];  ?></h5>
 

@@ -68,7 +68,7 @@ require "config.php";
                                 </div>
                             </form>
                             <?php
-                            $date = date("y-m-d");
+                            $date = date('Y-m-d H:i:s');
                             $title = (isset($_POST['diaryTitle']) ? $_POST['diaryTitle'] : "");
                             $description = (isset($_POST['diaryDesc']) ? $_POST['diaryDesc'] : "");
 
@@ -123,9 +123,14 @@ foreach ($result as $diary) {
                             <span class="dots"></span>
                         </div>
                         <form class=" dropdown-menu text-center" method="POST">
-                            <li class="mb-2"><button type="submit" class="btn btn-light w-100">Edit</button></li>
-                            <li class="mb-2"><button type="submit" class="btn btn-light w-100">Delete</button></li>
+                            <li class="mb-2"><button type="submit" name="edit" class="btn btn-light w-100">Edit</button></li>
+                            <li class="mb-2"><button type="submit" name="delete" class="btn btn-light w-100">Delete</button></li>
                         </form>
+                        <?php
+                            if(isset($_POST['edit'])){
+
+                            }
+                        ?>
                     </div>
                 </div>
                 <!-- Journal title and content. -->

@@ -87,7 +87,7 @@
                                     <div class="signup-text  mb-4 col-md-4">
 
                                         <p class="mb-0">Don't have an Account?</p>
-                                        <a href="">Sign up</a>
+                                        <a href="signup.php">Sign up</a>
                                     </div>
                                 </div>
 
