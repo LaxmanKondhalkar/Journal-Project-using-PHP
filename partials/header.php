@@ -37,8 +37,7 @@
 
                     <div class="collapse navbar-collapse  col-md-7 " id="myNavbar">
 
-                        <ul class="navbar-nav nav-bg">
-                          
+                        <ul class="navbar-nav nav-bg">          
                             <li class="nav-item ">
                                 <a class="nav-link  px-4 fs-5 nav-anchor <?php echo ($page == "journals.php" ? "active-nav-link" : "" )?> " 
                                     href="http://localhost/Journal-Project-using-PHP/journal.php">Journals</a>
@@ -48,8 +47,8 @@
                                 href="http://localhost/Journal-Project-using-PHP/diary.php">Diary</a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link px-4  fs-5 nav-anchor <?php echo ($page == 'events.php' ? "active-nav-link" :"" )?>" 
-                                href="http://localhost/Journal-Project-using-PHP/events.php">Events</a>
+                                <a class="nav-link px-4  fs-5 nav-anchor <?php echo ($page == 'event.php' ? "active-nav-link" :"" )?>" 
+                                href="http://localhost/Journal-Project-using-PHP/event.php">Events</a>
                             </li>
                             <li class="nav-item ">
                                 <a class="nav-link px-4 fs-5 nav-anchor <?php echo ($page == "QandA.php"? "active-nav-link": "")?> "
