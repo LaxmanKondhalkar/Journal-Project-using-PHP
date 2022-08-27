@@ -1,9 +1,6 @@
 <?php
 $page = "journals.php";
 include "../assets/header.php";
-?>
-
-<?php
 require '../../config.php';
 
 $q = "select * from journals where status= 'pending'";

@@ -9,6 +9,7 @@
       integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="/Journal-Project-using-PHP/assets/css/style.css">
     <link rel="stylesheet" href="/Journal-project-using-PHP/Admin panel/assets/css/style.css">
+    
   </head>
 
   <body>

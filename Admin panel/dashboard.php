@@ -1,6 +1,7 @@
 <?php
 $page = "dashboard.php";
 include 'assets/header.php';
+require "../config.php"; 
 ?>
 
 
@@ -22,7 +23,6 @@ include 'assets/header.php';
         <div class="card">
           <div class="card-body text-center item-bg">
             <?php 
-              require "../config.php"; 
               $query = "select COUNT(*) from journals where status='pending'"; 
               $fireQuery = mysqli_query($conn, $query);
               foreach($fireQuery as $value){
@@ -41,10 +41,21 @@ include 'assets/header.php';
       </div>
       <div class="col-xs-12 col-md-4 mx-3 my-2">
         <div class="card">
-          <div class="card-body text-center item-bg">
-            <h4 class="card-title">3</h4>
+        <div class="card-body text-center item-bg">
+            <?php 
+              $query = "select COUNT(*) from events where status='pending'"; 
+              $fireQuery = mysqli_query($conn, $query);
+              foreach($fireQuery as $value){
+                // print_r($value); 
+            ?>
+            <h3 class="card-title">
+                <?php 
+                  echo $value['COUNT(*)']; 
+              }
+                ?>
+            </h3>
             <p class="card-text">Pending Events</p>
-            <a href="/Journal-Project-using-PHP/Admin panel/pending_items/events.php" class="btn btn-primary go-to-item-btn">Go to Journals</a>
+            <a href="/Journal-Project-using-PHP/Admin panel/pending_items/journals.php" class="btn btn-primary go-to-item-btn">Go to Item</a>
           </div>
         </div>
       </div>
