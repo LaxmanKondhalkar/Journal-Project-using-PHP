@@ -170,22 +170,27 @@ foreach ($result as $event) {
                 <div class="">
                     <h5><?php echo $event['e_name'] ?></h5>
                 </div>
+                <hr>
                 <div class="">
-                    <h6><?php echo $event['e_date'] ?></h6>
+                    <h6><span class="event-descriptions">Event Date:</span><?php echo " ".$event['e_date'] ?></h6>
                 </div>
+                <hr>
                 <div class="">
-                    <h6><?php echo $event['e_time'] ?></h6>
+                    <h6><span class="event-descriptions">Event Timing:</span><?php echo " ".$event['e_time'] ?></h6>
                 </div>
+                <hr>
                 <div class="">
-                    <h6><?php echo $event['e_location'] ?></h6>
+                    <h6><span class="event-descriptions">Event Location: </span><?php echo " ".$event['e_location'] ?></h6>
                 </div>
+                <hr>
                 <div class="">
-                    <h6><?php echo $event['e_type'] ?></h6>
+                    <h6><span class="event-descriptions">Event Type: </span><?php echo " ".$event['e_type'] ?></h6>
                 </div>
+                <hr>
                 <div class="">
-                    <h6><?php echo $event['e_requirements'] ?></h6>
+                    <h6><span class="event-descriptions">Event Requirements: </span><?php echo " ".$event['e_requirements'] ?></h6>
                 </div>
-
+                <hr>
                 <div class=" mt-4">
                     <p><?php echo $event['e_desc'] ?></p>
                 </div>

@@ -11,6 +11,7 @@
         <style>
             <?php 
                 include "assets/css/style.css";
+                include "assets/css/utils.css";
             ?>
         </style>
     </head>
