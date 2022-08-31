@@ -1,0 +1,4 @@
+1. There should be an index page in your folder.
+2. No password encryption for admin and user
+3. After register there was no message to notify user about successful registration 
+4. There is no primary key in admin table
