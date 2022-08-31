@@ -2,3 +2,6 @@
 2. No password encryption for admin and user
 3. After register there was no message to notify user about successful registration 
 4. There is no primary key in admin table
+5. href="/Journal-Project-using-PHP/Admin panel/pending_items/journals.php" wrong way to give path. Correct is href="pending_items/journals.php"
+6. Show message on journal page if there is no pending journals in admin panel and same for all.
+7. If I approve or reject a journal or event etc then page should be refreshed automatically.
