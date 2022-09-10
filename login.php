@@ -14,7 +14,7 @@
                 session_start(); 
                 $_SESSION['loggedIn'] = true; 
                 $_SESSION['userId'] = $uId; 
-                echo "<script> window.location.assign('journal.php');</script>";
+                echo "<script> window.location.assign('index.php');</script>";
             } else {
                 echo "email or password is wrong try again";
             }

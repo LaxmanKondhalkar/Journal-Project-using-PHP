@@ -20,8 +20,8 @@ foreach ($result as $user) {
 
 
             <div class="row">
-                <div class="col-lg-4">
-                    <div class="card mb-4">
+                <div class="col-lg-4" >
+                    <div class="card mb-4 style="height : 400px"">
                         <div class="card-body text-center d-flex flex-column align-items-center">
                             <div class="img-container " style="width : 150px; height : 150px; overflow: hidden;">
                                 <img src="userProfiles/<?php echo $user['userImage']; ?>" alt="avatar" class="avatar rounded-circle img-fluid" style="width: 150px; height: 150px; object-fit: cover;">
@@ -76,7 +76,7 @@ foreach ($result as $user) {
 
                 </div>
                 <div class="col-lg-8">
-                    <div class="card mb-4">
+                    <div class="card mb-4 py-3">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-3">
@@ -116,9 +116,14 @@ foreach ($result as $user) {
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    
+                <!-- User's Journal and Diary.. -->
+                <div class="row" style="height : 1000px;">
+                    <iframe src="iframe_pages/user_journal.php" frameborder="0">
+
+                    </iframe>
                 </div>
+
+
                 <form class="row  d-flex justify-content-center align-center mt-5" action="" method="GET">
                     <button class="btn btn-primary logout-btn  col-md-6" name="logout" type="submit">Logout</button>
                 </form>

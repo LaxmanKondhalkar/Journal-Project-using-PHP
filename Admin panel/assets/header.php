@@ -7,8 +7,8 @@
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <link rel="stylesheet" href="/Journal-Project-using-PHP/assets/css/style.css">
-    <link rel="stylesheet" href="/Journal-project-using-PHP/Admin panel/assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- <link rel="stylesheet" href="../../assets/css/style.css"> -->
     
   </head>
 
@@ -33,19 +33,19 @@
 
             <ul class="navbar-nav nav-bg">
               <li class="nav-item ">
-                <a class="nav-link  px-4 fs-5  <?php echo ($page == "dashboard.php" ? "active-nav-link" : "" )?> "  href="/Journal-Project-using-PHP/Admin panel/dashboard.php">Dashboard</a>
+                <a class="nav-link  px-4 fs-5  <?php echo ($page == "dashboard.php" ? "active-nav-link" : "" )?> "  href="dashboard.php">Dashboard</a>
               </li>
               <li class="nav-item ">
-                <a class="nav-link  px-4 fs-5  <?php echo ($page == "journals.php" ? "active-nav-link" : "" )?> "  href="/Journal-Project-using-PHP/Admin panel/pending_items/journals.php">Journals</a>
+                <a class="nav-link  px-4 fs-5  <?php echo ($page == "journals.php" ? "active-nav-link" : "" )?> "  href="journals.php">Journals</a>
               </li>
               <li class="nav-item ">
-                <a class="nav-link px-4  fs-5   <?php echo ($page == "events.php" ? "active-nav-link" : "" )?> " href="/Journal-Project-using-PHP/Admin panel/pending_items/events.php">Events</a>
+                <a class="nav-link px-4  fs-5   <?php echo ($page == "events.php" ? "active-nav-link" : "" )?> " href="events.php">Events</a>
               </li>
               <li class="nav-item ">
-                <a class="nav-link px-4 fs-5   <?php echo ($page == "questions.php" ? "active-nav-link" : "" )?> " href="/Journal-Project-using-PHP/Admin panel/pending_items/questions.php">Questions</a>
+                <a class="nav-link px-4 fs-5   <?php echo ($page == "questions.php" ? "active-nav-link" : "" )?> " href="questions.php">Questions</a>
               </li>
               <li class="nav-item ">
-                <a class="nav-link px-4 fs-5   <?php echo ($page == "answers.php" ? "active-nav-link" : "" )?> " href="/Journal-Project-using-PHP/Admin panel/pending_items/answers.php">Answers</a>
+                <a class="nav-link px-4 fs-5   <?php echo ($page == "answers.php" ? "active-nav-link" : "" )?> " href="answers.php">Answers</a>
               </li>
             </ul>
 

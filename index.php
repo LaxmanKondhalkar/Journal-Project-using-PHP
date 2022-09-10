@@ -1,5 +1,5 @@
 <?php
-$page = "journals.php";
+$page = "index.php";
 session_start();
 
 if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] != true) {
@@ -76,20 +76,20 @@ require "config.php";
                                 </div>
                             </form>
                             <?php
-                            $date = date('Y-m-d H:i:s');
+                        
                             $title = (isset($_POST['journalTitle']) ? $_POST['journalTitle'] : "");
                             $description = (isset($_POST['journalDescription']) ? $_POST['journalDescription'] : "");
                             $status = "pending";
 
                             if (isset($_POST['journalSubmit'])) {
                                 require "config.php";
-                                $q = "Insert into `journals` (`date`,`title`,`description`, `status`, `user_id`) values ('$date','$title','$description', '$status', '$uId')";
+                                $q = "Insert into `journals` (`title`,`description`, `status`, `user_id`) values ('$title','$description', '$status', '$uId')";
 
                                 $result = mysqli_query($conn, $q);
 
                                 if ($result > 0) {
                                     //echo "Journal Posted Successfully";
-                                    echo "<script>window.location.assign('journal.php?msg');</script>";
+                                    echo "<script>window.location.assign('index.php?msg');</script>";
                                 } else {
                                     echo "insertion failed <br>";
                                     echo mysqli_error($conn);

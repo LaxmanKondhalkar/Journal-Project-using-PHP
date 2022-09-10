@@ -222,3 +222,10 @@ footer{
         padding: 0 !important;
     }
 }
+
+@media (max-width : 576px) {
+    .reject-btn{
+        justify-content: start !important;
+        margin-top: 10px;
+    }
+}
