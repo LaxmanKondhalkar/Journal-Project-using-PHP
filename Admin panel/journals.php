@@ -25,7 +25,7 @@ foreach ($result as $journal) {
 
                         ?>
                             <div class="profile-icon-container">
-                                <img src="../../userProfiles/<?php echo $value['userImage']; ?>" class="profile-icon img-fluid" alt="icon">
+                                <img src="../userProfiles/<?php echo $value['userImage']; ?>" class="profile-icon img-fluid" alt="icon">
                             </div>
                             <div class="user-name-j-post">
                                 <p class="pt-2 ps-3 userName">

@@ -1,5 +1,5 @@
 <?php
-$page = "dashboard.php";
+$page = "index.php";
 include 'assets/header.php';
 require "../config.php"; 
 ?>
@@ -35,7 +35,7 @@ require "../config.php";
                 ?>
             </h3>
             <p class="card-text">Pending Journals</p>
-            <a href="/Journal-Project-using-PHP/Admin panel/pending_items/journals.php" class="btn btn-primary go-to-item-btn">Go to Item</a>
+            <a href="journals.php" class="btn btn-primary go-to-item-btn">Go to Item</a>
           </div>
         </div>
       </div>
@@ -55,7 +55,7 @@ require "../config.php";
                 ?>
             </h3>
             <p class="card-text">Pending Events</p>
-            <a href="/Journal-Project-using-PHP/Admin panel/pending_items/journals.php" class="btn btn-primary go-to-item-btn">Go to Item</a>
+            <a href="journals.php" class="btn btn-primary go-to-item-btn">Go to Item</a>
           </div>
         </div>
       </div>
@@ -67,7 +67,7 @@ require "../config.php";
           <div class="card-body text-center item-bg">
             <h4 class="card-title">4</h4>
             <p class="card-text">Pending Answers</p>
-            <a href="/Journal-Project-using-PHP/Admin panel/pending_items/Answers.php" class="btn btn-primary go-to-item-btn">Go to Diaries</a>
+            <a href="Answers.php" class="btn btn-primary go-to-item-btn">Go to Diaries</a>
           </div>
         </div>
       </div>
@@ -76,7 +76,7 @@ require "../config.php";
           <div class="card-body text-center item-bg">
             <h4 class="card-title">10</h4>
             <p class="card-text">Pending questions</p>
-            <a href="/Journal-Project-using-PHP/Admin panel/pending_items/questions.php" class="btn btn-primary go-to-item-btn">Go to Questions</a>
+            <a href="questions.php" class="btn btn-primary go-to-item-btn">Go to Questions</a>
           </div>
         </div>
       </div>

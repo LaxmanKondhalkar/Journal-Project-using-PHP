@@ -33,7 +33,7 @@
 
             <ul class="navbar-nav nav-bg">
               <li class="nav-item ">
-                <a class="nav-link  px-4 fs-5  <?php echo ($page == "dashboard.php" ? "active-nav-link" : "" )?> "  href="dashboard.php">Dashboard</a>
+                <a class="nav-link  px-4 fs-5  <?php echo ($page == "index.php" ? "active-nav-link" : "" )?> "  href="index.php">Dashboard</a>
               </li>
               <li class="nav-item ">
                 <a class="nav-link  px-4 fs-5  <?php echo ($page == "journals.php" ? "active-nav-link" : "" )?> "  href="journals.php">Journals</a>
