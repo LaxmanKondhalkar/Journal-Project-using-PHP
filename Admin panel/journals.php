@@ -3,7 +3,7 @@ $page = "journals.php";
 include "assets/header.php";
 require '../config.php';
 
-$q = "select * from journals where status= 'pending'";
+$q = "select * from journals where status= 'pending' order by date DESC";
 
 $result = mysqli_query($conn, $q);
 

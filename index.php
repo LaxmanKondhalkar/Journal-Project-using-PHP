@@ -109,7 +109,7 @@ require "config.php";
 <?php
 require 'config.php';
 
-$q = "select * from journals where status= 'approved'";
+$q = "select * from journals where status= 'approved' order by date desc";
 
 $result = mysqli_query($conn, $q);
 

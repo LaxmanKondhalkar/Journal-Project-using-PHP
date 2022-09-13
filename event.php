@@ -94,8 +94,8 @@ require "config.php";
                                     $eTime = $_POST['eTime']; 
                                     $eRequirements = $_POST['eRequirements']; 
                                     $eDesc = $_POST['eDesc']; 
-                                    $date = date('Y-m-d H:i:s');
-                                    $InsertQuery = "Insert into `events` (`e_name`, `e_location`,`e_type`, `e_date`, `e_time`, `e_requirements`, `e_desc`, `date`, `user_id`)  values('$eName', '$eLocation', '$eType','$eDate','$eTime', '$eRequirements', '$eDesc', '$date', '$uId')";
+                                    // $date = date('Y-m-d H:i:s'); // Not required anymore.
+                                    $InsertQuery = "Insert into `events` (`e_name`, `e_location`,`e_type`, `e_date`, `e_time`, `e_requirements`, `e_desc`,`user_id`)  values('$eName', '$eLocation', '$eType','$eDate','$eTime', '$eRequirements', '$eDesc', '$uId')";
                                     $result = mysqli_query($conn, $InsertQuery); 
                                     if($result > 0){
                                         echo "Success";

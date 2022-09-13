@@ -68,13 +68,13 @@ require "config.php";
                                 </div>
                             </form>
                             <?php
-                            $date = date('Y-m-d H:i:s');
+                            // $date = date('Y-m-d H:i:s'); // Not required anymore.
                             $title = (isset($_POST['diaryTitle']) ? $_POST['diaryTitle'] : "");
                             $description = (isset($_POST['diaryDesc']) ? $_POST['diaryDesc'] : "");
 
                             if (isset($_POST['diarySubmit'])) {
                                 require "config.php";
-                                $q = "Insert into `diary` (`date`,`title`,`description`, `user_id`) values ('$date','$title','$description', '$uId')";
+                                $q = "Insert into `diary` (`title`,`description`, `user_id`) values ('$title','$description', '$uId')";
 
                                 $result = mysqli_query($conn, $q);
 
