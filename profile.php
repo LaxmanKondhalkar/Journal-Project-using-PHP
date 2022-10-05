@@ -138,7 +138,6 @@ foreach ($result as $user) {
     </section>
 
 
-
     <?php
 
     include "partials/footer.php";

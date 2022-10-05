@@ -1,16 +1,32 @@
 <?php
-$page = "diary.php";
-session_start();
+    require "config.php";
+    $page = "diary.php";
+    session_start();
 
-if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] != true) {
-    header("location: login.php", true);
-    exit();
-}
-$uId = $_SESSION['userId'];
+    if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] != true) {
+        header("location: login.php", true);
+        exit();
+    }
+    $uId = $_SESSION['userId'];
+    $_SESSION['currDate'] = date('Y-m-d'); 
+    $dateExist = false;
 
-require('./partials/header.php');
-require "config.php";
+    $checkDate = "Select DATE_FORMAT(date, '%Y-%m-%d') DATEONLY from diary where user_id = $uId";
+    $dates = mysqli_query($conn, $checkDate);
 
+    // echo $_SESSION['currDate']; 
+    foreach ($dates as $date) {
+        if ($date['DATEONLY'] == $_SESSION['currDate']) {
+            // echo "Date exist show the diary content and append the new ones if there.";
+            $dateExist = true; 
+        }
+        else{
+            echo mysqli_error($conn); 
+            // print_r($date['DATEONLY']); 
+        }
+    }
+
+    require('./partials/header.php');
 ?>
 <!-- title section -->
 <section id="title">
@@ -44,6 +60,10 @@ require "config.php";
             </button>
 
             <!-- Modal -->
+
+            <!-- <?php 
+                // $showData = "Select * from diary where user_id = $uId"; 
+            ?> -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
                     <div class="modal-content">
@@ -69,10 +89,11 @@ require "config.php";
                             </form>
                             <?php
                             // $date = date('Y-m-d H:i:s'); // Not required anymore.
-                            $title = (isset($_POST['diaryTitle']) ? $_POST['diaryTitle'] : "");
-                            $description = (isset($_POST['diaryDesc']) ? $_POST['diaryDesc'] : "");
-
-                            if (isset($_POST['diarySubmit'])) {
+                            $title = mysqli_real_escape_string($conn, (isset($_POST['diaryTitle']) ? $_POST['diaryTitle'] : ""));
+                            $description = mysqli_real_escape_string($conn, (isset($_POST['diaryDesc']) ? $_POST['diaryDesc'] : ""));
+                            
+                        
+                            if (isset($_POST['diarySubmit']) && $dateExist == false && strlen($_POST['diaryTitle']) > 0 && strlen($_POST['diaryDesc']) > 0) {
                                 require "config.php";
                                 $q = "Insert into `diary` (`title`,`description`, `user_id`) values ('$title','$description', '$uId')";
 
@@ -88,6 +109,9 @@ require "config.php";
                                     print_r($result);
                                 }
                             }
+                            else{
+                                echo "<script>alert('Insertion failed.');</script>"; 
+                            }
                             ?>
                         </div>
                     </div>
@@ -101,7 +125,7 @@ require "config.php";
 <?php
 require "config.php";
 
-$query = "select * from diary where user_id=$uId";
+$query = "select * from diary where user_id=$uId order by date desc";
 $result = mysqli_query($conn, $query);
 foreach ($result as $diary) {
 ?>
@@ -116,22 +140,18 @@ foreach ($result as $diary) {
                         <h3><?php echo $diary['date']; ?></h3>
                     </div>
                     <!-- date of journal and options btn  -->
-                    <div class="j-date-and-options d-flex col-sm-9 col-md-9 justify-content-end dropstart">
+                    <!-- <div class="j-date-and-options d-flex col-sm-9 col-md-9 justify-content-end dropstart">
                         <div class="options btn " data-bs-toggle="dropdown" aria-expanded="false">
                             <span class="dots"></span>
                             <span class="dots"></span>
                             <span class="dots"></span>
-                        </div>
+                        </div> 
                         <form class=" dropdown-menu text-center" method="POST">
                             <li class="mb-2"><button type="submit" name="edit" class="btn btn-light w-100">Edit</button></li>
                             <li class="mb-2"><button type="submit" name="delete" class="btn btn-light w-100">Delete</button></li>
                         </form>
-                        <?php
-                            if(isset($_POST['edit'])){
-
-                            }
-                        ?>
-                    </div>
+                       
+                    </div> -->
                 </div>
                 <!-- Journal title and content. -->
                 <div class="journal-title-and-content col-lg-10 offset-lg-1 mt-4">
