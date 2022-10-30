@@ -1,5 +1,5 @@
 <?php
-    $page = "journals.php";
+    $page = "events.php";
     include "assets/header.php";
     require '../config.php';
 
@@ -26,7 +26,7 @@
                         ?>
                             <div class="profile-icon-container">
 
-                                <img src="../../userProfiles/<?php echo $value['userImage']; ?>" class="profile-icon rounded-circle img-fluid" alt="icon">
+                                <img src="../userProfiles/<?php echo $value['userImage']; ?>" class="profile-icon rounded-circle img-fluid" alt="icon">
                             </div>
                             <div class="user-name-j-post">
                                 <p class="pt-2 ps-3 userName fw-semibold">
@@ -54,22 +54,27 @@
                     <div class="">
                         <h5><?php echo $event['e_name'] ?></h5>
                     </div>
+                    <hr>
                     <div class="">
                         <h6><?php echo $event['e_date'] ?></h6>
                     </div>
+                    <hr>
                     <div class="">
                         <h6><?php echo $event['e_time'] ?></h6>
                     </div>
+                    <hr>
                     <div class="">
                         <h6><?php echo $event['e_location'] ?></h6>
                     </div>
+                    <hr>
                     <div class="">
                         <h6><?php echo $event['e_type'] ?></h6>
                     </div>
+                    <hr>
                     <div class="">
                         <h6><?php echo $event['e_requirements'] ?></h6>
                     </div>
-
+                    <hr>
                     <div class=" mt-4">
                         <p><?php echo $event['e_desc'] ?></p>
                     </div>

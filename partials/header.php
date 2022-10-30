@@ -51,10 +51,10 @@
                                 <a class="nav-link px-4  fs-5 nav-anchor <?php echo ($page == 'event.php' ? "active-nav-link" :"" )?>" 
                                 href="event.php">Events</a>
                             </li>
-                            <li class="nav-item ">
+                            <!-- <li class="nav-item ">
                                 <a class="nav-link px-4 fs-5 nav-anchor <?php echo ($page == "QandA.php"? "active-nav-link": "")?> "
                                 href="QandA.php">Q&A</a>
-                            </li>
+                            </li> -->
                             <li class="nav-item ">
                                 <a class="nav-link px-4 fs-5 nav-anchor <?php echo ($page == "profile.php" ? "active-nav-link" :"" )?> "
                                 href="profile.php">Profile</a>

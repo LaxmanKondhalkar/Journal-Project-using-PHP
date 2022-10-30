@@ -34,7 +34,7 @@ require "config.php";
                 $fireQuery = mysqli_query($conn, $selectUserImg);
                 foreach ($fireQuery as $userImage) {
                 ?>
-                    <img src="./userProfiles/<?php echo $userImage['userImage'];
+                    <img src="userProfiles/<?php echo $userImage['userImage'];
                                             } ?>" class="profile-icon rounded-circle img-fluid" alt="icon">
             </div>
 
