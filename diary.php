@@ -7,15 +7,17 @@
         header("location: login.php", true);
         exit();
     }
+    $timezone = date_default_timezone_set("Asia/Calcutta");
     $uId = $_SESSION['userId'];
     $_SESSION['currDate'] = date('Y-m-d'); 
     $dateExist = false;
 
-    $checkDate = "Select DATE_FORMAT(date, '%Y-%m-%d') DATEONLY from diary where user_id = $uId";
+    $checkDate = "SELECT DATE_FORMAT(date, '%Y-%m-%d') DATEONLY from diary where user_id = $uId";
     $dates = mysqli_query($conn, $checkDate);
 
-    // echo $_SESSION['currDate']; 
+    // echo $_SESSION['currDate']."<br>"; 
     foreach ($dates as $date) {
+        // echo $date['DATEONLY']."<br>";
         if ($date['DATEONLY'] == $_SESSION['currDate']) {
             // echo "Date exist show the diary content and append the new ones if there.";
             $dateExist = true; 
@@ -94,7 +96,6 @@
                             
                         
                             if (isset($_POST['diarySubmit']) && $dateExist == false && strlen($_POST['diaryTitle']) > 0 && strlen($_POST['diaryDesc']) > 0) {
-                                require "config.php";
                                 $q = "Insert into `diary` (`title`,`description`, `user_id`) values ('$title','$description', '$uId')";
 
                                 $result = mysqli_query($conn, $q);
@@ -109,9 +110,7 @@
                                     print_r($result);
                                 }
                             }
-                            else{
-                                echo "<script>alert('Insertion failed.');</script>"; 
-                            }
+                            
                             ?>
                         </div>
                     </div>
@@ -137,7 +136,8 @@ foreach ($result as $diary) {
                 <div class="j-post-header d-flex offset-lg-1">
                     <!-- user image and name -->
                     <div class="user-data d-flex justify-content-end me-5">
-                        <h3><?php echo $diary['date']; ?></h3>
+                        <h3>
+                            <?php echo date('j F Y, l', strtotime($diary['date'])); ?></h3>
                     </div>
                     <!-- date of journal and options btn  -->
                     <!-- <div class="j-date-and-options d-flex col-sm-9 col-md-9 justify-content-end dropstart">
