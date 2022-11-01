@@ -83,6 +83,23 @@
            </div>
            
         </footer>
+        <script> 
+            let frame = document.getElementById("profile_iframe");
+            frame.onload = function()
+            // function execute while load the iframe
+            {
+            // set the height of the iframe as 
+            // the height of the iframe content
+            // frame.style.height = 
+            // frame.contentWindow.document.body.scrollHeight + 'px';
+            
+    
+            // set the width of the iframe as the 
+            // width of the iframe content
+                
+        }
+            
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
             crossorigin="anonymous"></script>

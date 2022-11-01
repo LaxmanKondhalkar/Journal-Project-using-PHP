@@ -117,7 +117,7 @@ require "config.php";
 
 <?php
 
-$q = "select * from events where status= 'approved'";
+$q = "select * from events where status= 'approved' order by date desc";
 
 $result = mysqli_query($conn, $q);
 

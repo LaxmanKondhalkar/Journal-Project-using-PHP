@@ -77,8 +77,8 @@ require "config.php";
                             </form>
                             <?php
                         
-                            $title = (isset($_POST['journalTitle']) ? $_POST['journalTitle'] : "");
-                            $description = (isset($_POST['journalDescription']) ? $_POST['journalDescription'] : "");
+                            $title = mysqli_real_escape_string($conn, (isset($_POST['journalTitle']) ? $_POST['journalTitle'] : ""));
+                            $description = mysqli_real_escape_string($conn, (isset($_POST['journalDescription']) ? $_POST['journalDescription'] : ""));
                             $status = "pending";
 
                             if (isset($_POST['journalSubmit'])) {

@@ -55,7 +55,7 @@ foreach ($result as $user) {
 
                                                 if(isset($_POST['addImg'])){
                                                     $pic = $_FILES['userImg']['name']; 
-                                                    $newName = $pic.$uId;
+                                                    $newName = $uId.$pic;
                                                     $location = $_FILES['userImg']['tmp_name'];
                                                     $updateQuery = "UPDATE user SET userImage='$newName' where user_id= $uId";
                                                     $exec = mysqli_query($conn, $updateQuery);
@@ -117,9 +117,9 @@ foreach ($result as $user) {
                     </div>
                 </div>
                 <!-- User's Journal and Diary.. -->
-                <div class="row" style="height : 1000px;">
-                    <iframe src="iframe_pages/user_journal.php" frameborder="0">
-
+                <div class="row" style="height: 1000px; ">
+                    <iframe src="iframe_pages/user_journal.php" id="profile_iframe"  frameborder="0">
+                    <!-- height="430px" -->
                     </iframe>
                 </div>
 

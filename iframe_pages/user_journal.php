@@ -1,5 +1,5 @@
 <?php
-// $page = "journals.php";
+$page = "user_journal.php";
 session_start();
 
 if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] != true) {
@@ -9,24 +9,14 @@ if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] != true) {
 $uId = $_SESSION['userId'];
 
 require '../config.php';
-// include "../partials/header.php"
+include "iframe_header.php"; 
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
-</head>
-<body>
 <?php
 
 // $q = "select * from journals where user_id = $uId";
-$q = "select * from journals where status= 'approved'";
+$q = "SELECT * from journals WHERE status= 'approved' AND user_id=$uId order by date desc";
 
 $result = mysqli_query($conn, $q);
 
@@ -34,7 +24,7 @@ foreach ($result as $journal) {
     // if($journal > 1){
 ?>
     <section id="journal-posts" class="my-4 p-4">
-        <div class="container j-container ">
+        <div class="container j-container w-75">
             <div class="j-post p-4 ">
                 <!-- Journal Post header section -->
                 <div class="j-post-header d-flex offset-lg-1">
