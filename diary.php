@@ -121,50 +121,42 @@
 </section>
 
 
-<?php
-require "config.php";
 
-$query = "select * from diary where user_id=$uId order by date desc";
-$result = mysqli_query($conn, $query);
-foreach ($result as $diary) {
+
+
+<?php 
+    $query = "select * from diary where user_id=$uId order by date desc";
+    $result = mysqli_query($conn, $query);
+    foreach ($result as $diary) {
 ?>
-    <!-- Posts Section -->
-    <section id="journal-posts" class="my-4 p-4">
-        <div class="container j-container ">
-            <div class="j-post p-4 ">
-                <!-- Journal Post header section -->
-                <div class="j-post-header d-flex offset-lg-1">
-                    <!-- user image and name -->
-                    <div class="user-data d-flex justify-content-end me-5">
-                        <h3>
-                            <?php echo date('j F Y, l', strtotime($diary['date'])); ?></h3>
-                    </div>
-                    <!-- date of journal and options btn  -->
-                    <!-- <div class="j-date-and-options d-flex col-sm-9 col-md-9 justify-content-end dropstart">
-                        <div class="options btn " data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="dots"></span>
-                            <span class="dots"></span>
-                            <span class="dots"></span>
-                        </div> 
-                        <form class=" dropdown-menu text-center" method="POST">
-                            <li class="mb-2"><button type="submit" name="edit" class="btn btn-light w-100">Edit</button></li>
-                            <li class="mb-2"><button type="submit" name="delete" class="btn btn-light w-100">Delete</button></li>
-                        </form>
-                       
-                    </div> -->
-                </div>
-                <!-- Journal title and content. -->
-                <div class="journal-title-and-content col-lg-10 offset-lg-1 mt-4">
-                    <div class="journal-title">
-                        <h5><?php echo $diary['title'];  ?></h5>
-                    </div>
-                    <div class="journal-content">
-                        <p><?php echo $diary['description']; ?></p>
+        <section id="Posts ">
+            <div class="container my-5">
+                <div class="row">
+                    <div class="card post-card">
+                        <div class="card-header d-flex">
+                            <h3><?php echo date('j F Y, l', strtotime($diary['date'])); ?> </h3>
+                           
+                            <div class="options btn post-options">
+                                <span class="dots"></span>
+                                <span class="dots"></span>
+                                <span class="dots"></span>
+                            </div>
+                            <!-- </div> -->
+                        </div>
+                        <div class="card-body">
+
+                            <h5 class="card-title"><?php echo $diary['title'];  ?></h5>
+                            <p class="card-text"><?php echo $diary['description']; ?></p>
+                            <a href="#" class="">Go somewhere</a>
+                        </div>
+                        <!-- <div class="card-footer d-flex">
+                            <div class="likes pe-3 col-md-6 text-center">Likes</div>
+                            <div class="comments px-3 col-md-6 text-center">Comments</div>
+                        </div> -->
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
 <?php
 }

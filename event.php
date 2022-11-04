@@ -35,7 +35,7 @@ require "config.php";
                 foreach ($fireQuery as $userImage) {
                 ?>
                     <img src="userProfiles/<?php echo $userImage['userImage'];
-                                            } ?>" class="profile-icon rounded-circle img-fluid" alt="icon">
+                                        } ?>" class="profile-icon rounded-circle img-fluid" alt="icon">
             </div>
 
             <!-- Button trigger modal -->
@@ -83,27 +83,26 @@ require "config.php";
                                 </div>
                             </form>
                             <!-- Adding Form Data to Database. -->
-                            <?php 
-                               
-                           
-                               if(isset($_POST['eSubmit'])){
-                                    $eName = $_POST['eName']; 
-                                    $eLocation = $_POST['eLocation']; 
-                                    $eType = $_POST['eType']; 
-                                    $eDate = $_POST['eDate']; 
-                                    $eTime = $_POST['eTime']; 
-                                    $eRequirements = $_POST['eRequirements']; 
-                                    $eDesc = $_POST['eDesc']; 
-                                    // $date = date('Y-m-d H:i:s'); // Not required anymore.
-                                    $InsertQuery = "Insert into `events` (`e_name`, `e_location`,`e_type`, `e_date`, `e_time`, `e_requirements`, `e_desc`,`user_id`)  values('$eName', '$eLocation', '$eType','$eDate','$eTime', '$eRequirements', '$eDesc', '$uId')";
-                                    $result = mysqli_query($conn, $InsertQuery); 
-                                    if($result > 0){
-                                        echo "Success";
-                                    }
-                                    else{
-                                        echo mysqli_error($conn); 
-                                    }
-                               }
+                            <?php
+
+
+                            if (isset($_POST['eSubmit'])) {
+                                $eName = $_POST['eName'];
+                                $eLocation = $_POST['eLocation'];
+                                $eType = $_POST['eType'];
+                                $eDate = $_POST['eDate'];
+                                $eTime = $_POST['eTime'];
+                                $eRequirements = $_POST['eRequirements'];
+                                $eDesc = $_POST['eDesc'];
+                                // $date = date('Y-m-d H:i:s'); // Not required anymore.
+                                $InsertQuery = "Insert into `events` (`e_name`, `e_location`,`e_type`, `e_date`, `e_time`, `e_requirements`, `e_desc`,`user_id`)  values('$eName', '$eLocation', '$eType','$eDate','$eTime', '$eRequirements', '$eDesc', '$uId')";
+                                $result = mysqli_query($conn, $InsertQuery);
+                                if ($result > 0) {
+                                    echo "Success";
+                                } else {
+                                    echo mysqli_error($conn);
+                                }
+                            }
                             ?>
                         </div>
                     </div>
@@ -124,86 +123,80 @@ $result = mysqli_query($conn, $q);
 foreach ($result as $event) {
 ?>
 
-<section id="journal-posts" class="my-4 p-4">
-    <div class="container j-container ">
-        <div class="j-post p-4 ">
-            <!-- Journal Post header section -->
-            <div class="j-post-header d-flex offset-lg-1">
-                <!-- user image and name -->
-                <div class="user-data d-flex justify-content-end me-5">
+    <section id="Posts ">
+        <div class="container my-5">
+            <div class="row">
+                <div class="card post-card">
+                    <div class="card-header d-flex">
+                        <!-- <div class="row"> -->
+                        <div class="user-data d-flex">
+                            <?php
+                            $uId = $event['user_id'];
+                            $query = "select UserFName,userLName,userImage from `user` WHERE user_id= $uId";
+                            $exec = mysqli_query($conn, $query);
 
-                <?php
-                        $uId = $event['user_id'];
-                        $query = "select UserFName,userLName,userImage from `user` WHERE user_id= $uId";
-                        $exec = mysqli_query($conn, $query);
+                            foreach ($exec as $value) {
 
-                        foreach ($exec as $value) {
-
-                        ?>
-                        <div class="profile-icon-container">
-
-                            <img src="userProfiles/<?php echo $value['userImage']; ?>"" class="profile-icon rounded-circle img-fluid" alt="icon">
-                        </div>
-                        <div class="user-name-j-post">
-                            <p class="pt-2 ps-3 userName fw-semibold">
-                                <?php
+                            ?>
+                                <div class="profile-icon-container">
+                                    <img src="userProfiles/<?php echo $value['userImage']; ?>" class="profile-icon img-fluid" alt="icon">
+                                </div>
+                                <div class="user-name-j-post">
+                                    <p class="pt-2 ps-3 userName fw-semibold">
+                                    <?php
                                     echo $value['UserFName'] . " " . $value['userLName'];
                                 }
                                     ?>
-                            </p>
+                                    </p>
+                                </div>
                         </div>
-                </div>
-                <!-- date of journal and options btn  -->
-                <!-- <div class="j-date-and-options d-flex col-sm-5 col-md-7 justify-content-end">
-                        <div class="date d-flex  me-5">
-                                <p class="pt-2">1/1/11</p>
-                            </div> 
-                         <div class="options btn">
+                        <div class="options btn post-options">
                             <span class="dots"></span>
                             <span class="dots"></span>
                             <span class="dots"></span>
                         </div>
-                    </div> -->
-            </div>
-            <!-- Journal title and content. -->
-            <div class="journal-title-and-content col-lg-10 offset-lg-1 mt-4">
-                <div class="">
-                    <h5><?php echo $event['e_name'] ?></h5>
-                </div>
-                <hr>
-                <div class="">
-                    <h6><span class="event-descriptions">Event Date:</span><?php echo " ".$event['e_date'] ?></h6>
-                </div>
-                <hr>
-                <div class="">
-                    <h6><span class="event-descriptions">Event Timing:</span><?php echo " ".$event['e_time'] ?></h6>
-                </div>
-                <hr>
-                <div class="">
-                    <h6><span class="event-descriptions">Event Location: </span><?php echo " ".$event['e_location'] ?></h6>
-                </div>
-                <hr>
-                <div class="">
-                    <h6><span class="event-descriptions">Event Type: </span><?php echo " ".$event['e_type'] ?></h6>
-                </div>
-                <hr>
-                <div class="">
-                    <h6><span class="event-descriptions">Event Requirements: </span><?php echo " ".$event['e_requirements'] ?></h6>
-                </div>
-                <hr>
-                <div class=" mt-4">
-                    <p><?php echo $event['e_desc'] ?></p>
-                </div>
-            </div>
-            <div class="j-like-section offset-lg-1 mt-4 ">
-                <div class="btn j-like-btn d-flex align-items-center col-md-1 px-0">
-                    <img src="./assets/images/heart-solid.svg" class="j-like-btn-img" alt="like">
-                    <p class="ms-2">Like</p>
+                        <!-- </div> -->
+                    </div>
+                    <div class="card-body">
+
+                        <div class="">
+                            <h5><?php echo $event['e_name'] ?></h5>
+                        </div>
+                        <hr>
+                        <div class="">
+                            <h6><span class="event-descriptions">Event Date:</span><?php echo " " . $event['e_date'] ?></h6>
+                        </div>
+                        <hr>
+                        <div class="">
+                            <h6><span class="event-descriptions">Event Timing:</span><?php echo " " . $event['e_time'] ?></h6>
+                        </div>
+                        <hr>
+                        <div class="">
+                            <h6><span class="event-descriptions">Event Location: </span><?php echo " " . $event['e_location'] ?></h6>
+                        </div>
+                        <hr>
+                        <div class="">
+                            <h6><span class="event-descriptions">Event Type: </span><?php echo " " . $event['e_type'] ?></h6>
+                        </div>
+                        <hr>
+                        <div class="">
+                            <h6><span class="event-descriptions">Event Requirements: </span><?php echo " " . $event['e_requirements'] ?></h6>
+                        </div>
+                        <hr>
+                        <div class=" mt-4">
+                            <p><?php echo $event['e_desc'] ?></p>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex">
+                        <div class="likes pe-3 col-md-6 text-center">Likes</div>
+                        <div class="comments px-3 col-md-6 text-center">Comments</div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
+
 
 
 <?php
