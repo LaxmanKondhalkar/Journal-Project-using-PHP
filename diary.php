@@ -144,15 +144,9 @@
                             <!-- </div> -->
                         </div>
                         <div class="card-body">
-
                             <h5 class="card-title"><?php echo $diary['title'];  ?></h5>
-                            <p class="card-text"><?php echo $diary['description']; ?></p>
-                            <a href="#" class="">Go somewhere</a>
+                            <p class="card-text"><?php echo substr($diary['description'], 0,600)." ";?><a href= class="text-decoration-none">read more....</a></p>
                         </div>
-                        <!-- <div class="card-footer d-flex">
-                            <div class="likes pe-3 col-md-6 text-center">Likes</div>
-                            <div class="comments px-3 col-md-6 text-center">Comments</div>
-                        </div> -->
                     </div>
                 </div>
             </div>

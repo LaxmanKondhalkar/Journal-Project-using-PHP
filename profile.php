@@ -162,8 +162,7 @@ foreach ($result as $user) {
                         <div class="card-body">
 
                             <h5 class="card-title"><?php echo $journal['title']; ?></h5>
-                            <p class="card-text"><?php echo $journal['description']; ?></p>
-                            <a href="#" class="">Go somewhere</a>
+                            <p class="card-text"><?php echo substr($journal['description'], 0,600)." ";?><a href= class="text-decoration-none">read more....</a></p>
                         </div>
                         <div class="card-footer d-flex">
                             <div class="likes pe-3 col-md-6 text-center">Likes</div>
