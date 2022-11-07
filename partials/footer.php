@@ -84,8 +84,8 @@
            
         </footer>
         <script> 
-            let frame = document.getElementById("profile_iframe");
-            frame.onload = function()
+            // let frame = document.getElementById("profile_iframe");
+            // frame.onload = function()
             // function execute while load the iframe
             {
             // set the height of the iframe as 

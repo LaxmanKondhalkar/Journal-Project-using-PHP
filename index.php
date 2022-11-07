@@ -1,17 +1,17 @@
 <?php
-$page = "index.php";
-session_start();
 
-if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] != true) {
-    header("location: login.php", true);
-    exit();
-}
-$uId = $_SESSION['userId'];
+    $page = "index.php";
+    session_start();
 
-require('./partials/header.php');
-require "config.php";
+    if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] != true) {
+        header("location: login.php", true);
+        exit();
+    }
+    $uId = $_SESSION['userId'];
 
-?>
+    require('./partials/header.php');
+    require "config.php";
+?> 
 <!-- title section -->
 <section id="title">
 

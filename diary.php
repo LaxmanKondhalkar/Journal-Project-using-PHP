@@ -136,12 +136,17 @@
                         <div class="card-header d-flex">
                             <h3><?php echo date('j F Y, l', strtotime($diary['date'])); ?> </h3>
                            
-                            <div class="options btn post-options">
-                                <span class="dots"></span>
-                                <span class="dots"></span>
-                                <span class="dots"></span>
+                            <div class="dropdown dropstart options post-options">
+                                <button class="btn rotate90 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="dots"></span>
+                                    <span class="dots"></span>
+                                    <span class="dots"></span>
+                                </button>
+                                <form class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <li><a class="dropdown-item btn" href="#">Edit</a></li>
+                                    <li><a class="dropdown-item btn" href="#">Delete</a></li>
+                                </form>
                             </div>
-                            <!-- </div> -->
                         </div>
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $diary['title'];  ?></h5>

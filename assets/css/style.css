@@ -77,7 +77,7 @@ header{
 .j-post{
     background-color: #D9D9D9;
 }
-.options{
+.rotate90{
     transform: rotate(90deg); 
 }
 .dots{
@@ -254,4 +254,9 @@ footer{
    .card-footer{
         justify-content: space-around;
    }
+}
+
+/* important css */
+.dropdown-toggle::after, .dropdown-toggle::before {
+    content: none !important;
 }

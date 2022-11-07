@@ -150,12 +150,11 @@ foreach ($result as $event) {
                                     </p>
                                 </div>
                         </div>
-                        <div class="options btn post-options">
+                        <!-- <div class="options btn post-options">
                             <span class="dots"></span>
                             <span class="dots"></span>
                             <span class="dots"></span>
-                        </div>
-                        <!-- </div> -->
+                        </div> -->
                     </div>
                     <div class="card-body">
 
