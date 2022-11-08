@@ -141,17 +141,12 @@
                                         </p>
                                     </div>
                             </div>
-                            <div class="options btn post-options">
-                                <span class="dots"></span>
-                                <span class="dots"></span>
-                                <span class="dots"></span>
-                            </div>
-                            <!-- </div> -->
+                           
                         </div>
                         <div class="card-body">
 
                             <h5 class="card-title"><?php echo $journal['title']; ?></h5>
-                            <p class="card-text"><?php echo substr($journal['description'], 0,600)." ";?><a href="/" class="text-decoration-none">read more....</a></p>
+                            <p class="card-text"><?php echo substr($journal['description'], 0,600)." "; ?><?php if(strlen($journal['description']) > 600) {?><a href=class="text-decoration-none">read more....</a> <?php } ?></p>
                             
                         </div>
                         <div class="card-footer d-flex">
@@ -166,6 +161,8 @@
 <?php
 }
 ?>
+
+
 <?php
 require('./partials/footer.php');
 ?>

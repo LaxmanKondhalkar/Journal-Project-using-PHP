@@ -117,15 +117,22 @@ foreach ($result as $user) {
                     </div>
                 </div>
     </section>
-    
+
     <?php
-    if(isset($_GET['msg'])){
-        ?>
-        <div class="col-12 alert alert-success my-3"> Journal Posted Successfully.
-</div>
-        <?php
+    if (isset($_GET['msg'])) {
+    ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <!-- <strong>Successfully Posted</strong> Journal is Added Succesfully -->
+            Deleted Successfully.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php
     }
-?>
+    ?>
+
+    <!-- <div class="col-12 alert alert-success my-3"> Journal Posted Successfully.
+</div>
+      -->
 
     <?php
     // AND user_id=$uId
@@ -181,7 +188,7 @@ foreach ($result as $user) {
                                             <input type="hidden" name="journalId" value="<?php echo $journal['journal_id']; ?>">
                                             <input class="dropdown-item btn" name="deleteJournal" type="submit" value="Delete">
                                         </form>
-                                        
+
                                     </li>
                                 </ul>
 
@@ -190,7 +197,7 @@ foreach ($result as $user) {
                         <div class="card-body">
 
                             <h5 class="card-title"><?php echo $journal['title']; ?></h5>
-                            <p class="card-text"><?php echo substr($journal['description'], 0, 600) . " "; ?><a href=class="text-decoration-none">read more....</a></p>
+                            <p class="card-text"><?php echo substr($journal['description'], 0, 600) . " "; ?> <?php if(strlen($journal['description']) > 600) {?><a href=class="text-decoration-none">read more....</a> <?php } ?></p>
                         </div>
                         <div class="card-footer d-flex">
                             <div class="likes pe-3 col-md-6 text-center">Likes</div>
@@ -202,6 +209,109 @@ foreach ($result as $user) {
         </section>
 
     <?php } ?>
+    <!-- ######################=====Events=======####################### -->
+    <?php
+    $q = "SELECT * FROM events WHERE status= 'approved' AND user_id=$uId order by date desc";
+
+    $result = mysqli_query($conn, $q);
+
+    foreach ($result as $event) {
+    ?>
+
+        <section id="Posts ">
+            <div class="container my-5">
+                <div class="row">
+                    <div class="card post-card">
+                        <div class="card-header d-flex">
+
+                            <div class="user-data d-flex">
+                                <?php
+                                $uId = $event['user_id'];
+                                $query = "select UserFName,userLName,userImage from `user` WHERE user_id= $uId";
+                                $exec = mysqli_query($conn, $query);
+
+                                foreach ($exec as $value) {
+
+                                ?>
+                                    <div class="profile-icon-container">
+                                        <img src="userProfiles/<?php echo $value['userImage']; ?>" class="profile-icon img-fluid" alt="icon">
+                                    </div>
+                                    <div class="user-name-j-post">
+                                        <p class="pt-2 ps-3 userName fw-semibold">
+                                        <?php
+                                        echo $value['UserFName'] . " " . $value['userLName'];
+                                    }
+                                        ?>
+                                        </p>
+                                    </div>
+                            </div>
+                            <div class="dropdown dropstart options post-options">
+                                <button class="btn rotate90 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="dots"></span>
+                                    <span class="dots"></span>
+                                    <span class="dots"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <li>
+                                        <form action="profile.php" method="POST">
+                                            <input type="hidden" name="id" value="<?php echo $event['id']; ?>">
+                                            <input class="dropdown-item btn" name="deleteEvent" type="submit" value="Edit">
+                                        </form>
+
+                                    </li>
+                                    <li>
+                                        <form action="profile.php" method="POST">
+                                            <input type="hidden" name="eventId" value="<?php echo $event['id']; ?>">
+                                            <input class="dropdown-item btn" name="deleteEvent" type="submit" value="Delete">
+                                        </form>
+
+                                    </li>
+                                </ul>
+
+                            </div>
+
+                        </div>
+                        <div class="card-body">
+
+                            <div class="">
+                                <h5><?php echo $event['e_name'] ?></h5>
+                            </div>
+                            <hr>
+                            <div class="">
+                                <h6><span class="event-descriptions">Event Date:</span><?php echo " " . $event['e_date'] ?></h6>
+                            </div>
+                            <hr>
+                            <div class="">
+                                <h6><span class="event-descriptions">Event Timing:</span><?php echo " " . $event['e_time'] ?></h6>
+                            </div>
+                            <hr>
+                            <div class="">
+                                <h6><span class="event-descriptions">Event Location: </span><?php echo " " . $event['e_location'] ?></h6>
+                            </div>
+                            <hr>
+                            <div class="">
+                                <h6><span class="event-descriptions">Event Type: </span><?php echo " " . $event['e_type'] ?></h6>
+                            </div>
+                            <hr>
+                            <div class="">
+                                <h6><span class="event-descriptions">Event Requirements: </span><?php echo " " . $event['e_requirements'] ?></h6>
+                            </div>
+                            <hr>
+                            <div class=" mt-4">
+                                <p><?php echo $event['e_desc'] ?></p>
+                            </div>
+                        </div>
+                        <div class="card-footer d-flex">
+                            <div class="likes pe-3 col-md-6 text-center">Likes</div>
+                            <div class="comments px-3 col-md-6 text-center">Comments</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <?php } ?>
+
+
     <div class="container">
         <div class="row mb-5">
             <form class="d-flex justify-content-center" action="" method="GET">
@@ -217,7 +327,7 @@ foreach ($result as $user) {
         </div>
     </div>
 
-<?php
+    <?php
 
     if (isset($_POST['deleteJournal'])) {
         $id = $_POST['journalId'];
@@ -225,12 +335,23 @@ foreach ($result as $user) {
         $query = "DELETE FROM journals WHERE journal_id = $id";
         $exec = mysqli_query($conn, $query);
         if ($exec > 0) {
-            echo "<script>window.location.assign('profile.php?msg')</script>";   
+            echo "<script>window.location.assign('profile.php?msg')</script>";
             // header("location : profile.php");
         } else {
             echo "Error" . mysqli_error($conn);
         }
-        
+    }
+    // Event Operation ---> should have made a different page for peforming operations.. :< #complexity issues.
+    if (isset($_POST['deleteEvent'])) {
+        $id = $_POST['eventId'];
+
+        $query = "DELETE FROM events WHERE id = $id";
+        $exec = mysqli_query($conn, $query);
+        if ($exec > 0) {
+            echo "<script>window.location.assign('profile.php?msg')</script>";
+        } else {
+            echo "Error" . mysqli_error($conn);
+        }
     }
 
     include "partials/footer.php";
