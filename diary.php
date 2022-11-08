@@ -1,33 +1,30 @@
 <?php
-require "config.php";
-$page = "diary.php";
-session_start();
+    require "config.php";
+    $page = "diary.php";
+    session_start();
 
-if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] != true) {
-    header("location: login.php", true);
-    exit();
-}
-$timezone = date_default_timezone_set("Asia/Calcutta");
-$uId = $_SESSION['userId'];
-$_SESSION['currDate'] = date('Y-m-d');
-$dateExist = false;
-
-$checkDate = "SELECT DATE_FORMAT(date, '%Y-%m-%d') DATEONLY from diary where user_id = $uId";
-$dates = mysqli_query($conn, $checkDate);
-
-// echo $_SESSION['currDate']."<br>"; 
-foreach ($dates as $date) {
-    // echo $date['DATEONLY']."<br>";
-    if ($date['DATEONLY'] == $_SESSION['currDate']) {
-        // echo "Date exist show the diary content and append the new ones if there.";
-        $dateExist = true;
-    } else {
-        echo mysqli_error($conn);
-        // print_r($date['DATEONLY']); 
+    if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] != true) {
+        header("location: login.php", true);
+        exit();
     }
-}
+    
+    $timezone = date_default_timezone_set("Asia/Calcutta");
+    $uId = $_SESSION['userId'];
+    $_SESSION['currDate'] = date('Y-m-d');
+    $dateExist = false;
 
-require('./partials/header.php');
+    $checkDate = "SELECT DATE_FORMAT(date, '%Y-%m-%d') DATEONLY from diary where user_id = $uId";
+    $dates = mysqli_query($conn, $checkDate);
+
+    foreach ($dates as $date) {
+        if ($date['DATEONLY'] == $_SESSION['currDate']) {
+            $dateExist = true;
+        } else {
+            echo mysqli_error($conn);
+        }
+    }
+
+    require('./partials/header.php');
 ?>
 <!-- title section -->
 <section id="title">
@@ -60,11 +57,6 @@ require('./partials/header.php');
                 Write Today's Diary.
             </button>
 
-            <!-- Modal -->
-
-            <!-- <?php
-                    // $showData = "Select * from diary where user_id = $uId"; 
-                    ?> -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
                     <div class="modal-content">
@@ -79,12 +71,10 @@ require('./partials/header.php');
                                     <input type="text" name="diaryTitle" class="form-control" id="exampleInputText" spellcheck="false" placeholder="Diary Title">
                                 </div>
                                 <div class="mb-3">
-                                    <!-- <label for="message-text" class="col-form-label">Message:</label> -->
                                     <textarea class="form-control" name="diaryDesc" id="message-text" spellcheck="false" placeholder="Write here..."></textarea>
                                 </div>
 
                                 <div class="modal-footer">
-                                    <!-- <button type="button" class="btn btn-secondary">Add images</button> -->
                                     <button type="submit" name="diarySubmit" class="btn btn-primary">Post</button>
                                 </div>
                             </form>
@@ -132,23 +122,25 @@ require('./partials/header.php');
 <?php
     }
 ?>
-<!-- For Failure -->
+
+<!-- For successfully updated -->
 <?php
-    if (isset($_GET['insertionFailed'])) {
+    if (isset($_GET['updateMsg'])) {
     ?>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
             <!-- <strong>Successfully Posted</strong> Journal is Added Succesfully -->
-                Couldn't Insert the diary. 
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                Diary updated successfully
+            <a type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></a>
         </div>
 <?php
     }
 ?>
+
     <!-- For successfully Deleted. Message -->
 <?php
     if (isset($_GET['deleted'])) {
     ?>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <!-- <strong>Successfully Posted</strong> Journal is Added Succesfully -->
             Deleted Successfully.
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -177,7 +169,7 @@ foreach ($result as $diary) {
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <li>
-                                    <form action="diary.php" method="POST">
+                                    <form action="updateDiary.php" method="POST">
                                         <input type="hidden" name="id" value="<?php echo $diary['diary_id']; ?>">
                                         <input class="dropdown-item btn" name="EditDiary" type="submit" value="Edit">
                                     </form>

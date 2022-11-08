@@ -77,25 +77,25 @@
                             </form>
                             <?php
                         
-                            $title = mysqli_real_escape_string($conn, (isset($_POST['journalTitle']) ? $_POST['journalTitle'] : ""));
-                            $description = mysqli_real_escape_string($conn, (isset($_POST['journalDescription']) ? $_POST['journalDescription'] : ""));
-                            $status = "pending";
+                                $title = mysqli_real_escape_string($conn, (isset($_POST['journalTitle']) ? $_POST['journalTitle'] : ""));
+                                $description = mysqli_real_escape_string($conn, (isset($_POST['journalDescription']) ? $_POST['journalDescription'] : ""));
+                                $status = "pending";
 
-                            if (isset($_POST['journalSubmit'])) {
-                                require "config.php";
-                                $q = "Insert into `journals` (`title`,`description`, `status`, `user_id`) values ('$title','$description', '$status', '$uId')";
+                                if (isset($_POST['journalSubmit'])) {
+                
+                                    $q = "Insert into `journals` (`title`,`description`, `status`, `user_id`) values ('$title','$description', '$status', '$uId')";
 
-                                $result = mysqli_query($conn, $q);
+                                    $result = mysqli_query($conn, $q);
 
-                                if ($result > 0) {
-                                    //echo "Journal Posted Successfully";
-                                    echo "<script>window.location.assign('index.php?msg');</script>";
-                                } else {
-                                    echo "insertion failed <br>";
-                                    echo mysqli_error($conn);
-                                    echo "<br>";
+                                    if ($result > 0) {
+                                        //echo "Journal Posted Successfully";
+                                        echo "<script>window.location.assign('index.php?msg');</script>";
+                                    } else {
+                                        echo "insertion failed <br>";
+                                        echo mysqli_error($conn);
+                                        echo "<br>";
+                                    }
                                 }
-                            }
                             ?>
                         </div>
                     </div>
@@ -113,50 +113,50 @@
     $result = mysqli_query($conn, $q);
 
     foreach ($result as $journal) {
-    ?>
-        <section id="Posts ">
-            <div class="container my-5">
-                <div class="row">
-                    <div class="card post-card">
-                        <div class="card-header d-flex">
-                            <!-- <div class="row"> -->
-                            <div class="user-data d-flex">
-                                <?php
-                                $uId = $journal['user_id'];
-                                $query = "select UserFName,userLName,userImage from `user` WHERE user_id= $uId";
-                                $exec = mysqli_query($conn, $query);
+?>
+<section id="Posts ">
+    <div class="container my-5">
+        <div class="row">
+            <div class="card post-card">
+                <div class="card-header d-flex">
+                    <!-- <div class="row"> -->
+                    <div class="user-data d-flex">
+                        <?php
+                        $uId = $journal['user_id'];
+                        $query = "select UserFName,userLName,userImage from `user` WHERE user_id= $uId";
+                        $exec = mysqli_query($conn, $query);
 
-                                foreach ($exec as $value) {
+                        foreach ($exec as $value) {
 
-                                ?>
-                                    <div class="profile-icon-container">
-                                        <img src="userProfiles/<?php echo $value['userImage']; ?>" class="profile-icon img-fluid" alt="icon">
-                                    </div>
-                                    <div class="user-name-j-post">
-                                        <p class="pt-2 ps-3 userName fw-semibold">
-                                        <?php
-                                        echo $value['UserFName'] . " " . $value['userLName'];
-                                    }
-                                        ?>
-                                        </p>
-                                    </div>
+                        ?>
+                            <div class="profile-icon-container">
+                                <img src="userProfiles/<?php echo $value['userImage']; ?>" class="profile-icon img-fluid" alt="icon">
                             </div>
-                           
-                        </div>
-                        <div class="card-body">
-
-                            <h5 class="card-title"><?php echo $journal['title']; ?></h5>
-                            <p class="card-text"><?php echo substr($journal['description'], 0,600)." "; ?><?php if(strlen($journal['description']) > 600) {?><a href=class="text-decoration-none">read more....</a> <?php } ?></p>
-                            
-                        </div>
-                        <div class="card-footer d-flex">
-                            <div class="likes pe-3 col-md-6 text-center">Likes</div>
-                            <div class="comments px-3 col-md-6 text-center">Comments</div>
-                        </div>
+                            <div class="user-name-j-post">
+                                <p class="pt-2 ps-3 userName fw-semibold">
+                                <?php
+                                echo $value['UserFName'] . " " . $value['userLName'];
+                            }
+                                ?>
+                                </p>
+                            </div>
                     </div>
+                    
+                </div>
+                <div class="card-body">
+
+                    <h5 class="card-title"><?php echo $journal['title']; ?></h5>
+                    <p class="card-text"><?php echo substr($journal['description'], 0,600)." "; ?><?php if(strlen($journal['description']) > 600) {?><a href=class="text-decoration-none">read more....</a> <?php } ?></p>
+                    
+                </div>
+                <div class="card-footer d-flex">
+                    <div class="likes pe-3 col-md-6 text-center">Likes</div>
+                    <div class="comments px-3 col-md-6 text-center">Comments</div>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
 
 <?php
 }

@@ -118,6 +118,7 @@ foreach ($result as $user) {
                 </div>
     </section>
 
+  <!-- Delete Message   -->
     <?php
     if (isset($_GET['msg'])) {
     ?>
@@ -129,13 +130,21 @@ foreach ($result as $user) {
     <?php
     }
     ?>
+    <!-- Update message -->
+    <?php
+    if (isset($_GET['updateMsg'])) {
+    ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Journal Updated Successfully</strong> Your Journal will be approved by admin after getting reviewed soon enough!
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php
+    }
+    ?>
 
-    <!-- <div class="col-12 alert alert-success my-3"> Journal Posted Successfully.
-</div>
-      -->
 
     <?php
-    // AND user_id=$uId
+
     $q = "SELECT * from journals where status= 'approved' AND user_id=$uId order by date desc";
 
     $result = mysqli_query($conn, $q);
@@ -177,11 +186,13 @@ foreach ($result as $user) {
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <li>
-                                        <form action="edit.php" method="POST">
-                                            <input type="hidden" name="id" value="<?php echo $journal['journal_id']; ?>">
-                                            <input class="dropdown-item btn" name="editJournal" type="submit" value="Edit">
+                                        <!-- <button type="button" class="btn col-8 col-md-8 ms-5 text-center share-post-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            Write a journal
+                                        </button> -->
+                                        <form action="updateJournal.php" method="POST">
+                                            <input type="hidden" name="journalId" value="<?php echo $journal['journal_id']; ?>">
+                                            <input class="dropdown-item btn" name="editJournal" type="submit" value="Edit" data-bs-toggle="modal" data-bs-target="#editJournalModal">
                                         </form>
-
                                     </li>
                                     <li>
                                         <form action="profile.php" method="POST">
@@ -195,9 +206,8 @@ foreach ($result as $user) {
                             </div>
                         </div>
                         <div class="card-body">
-
                             <h5 class="card-title"><?php echo $journal['title']; ?></h5>
-                            <p class="card-text"><?php echo substr($journal['description'], 0, 600) . " "; ?> <?php if(strlen($journal['description']) > 600) {?><a href=class="text-decoration-none">read more....</a> <?php } ?></p>
+                            <p class="card-text"><?php echo substr($journal['description'], 0, 600) . " "; ?> <?php if (strlen($journal['description']) > 600) { ?><a href=class="text-decoration-none">read more....</a> <?php } ?></p>
                         </div>
                         <div class="card-footer d-flex">
                             <div class="likes pe-3 col-md-6 text-center">Likes</div>
@@ -207,8 +217,11 @@ foreach ($result as $user) {
                 </div>
             </div>
         </section>
+        <?php } ?>
 
-    <?php } ?>
+
+      
+    
     <!-- ######################=====Events=======####################### -->
     <?php
     $q = "SELECT * FROM events WHERE status= 'approved' AND user_id=$uId order by date desc";
@@ -254,17 +267,9 @@ foreach ($result as $user) {
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <li>
                                         <form action="profile.php" method="POST">
-                                            <input type="hidden" name="id" value="<?php echo $event['id']; ?>">
-                                            <input class="dropdown-item btn" name="deleteEvent" type="submit" value="Edit">
-                                        </form>
-
-                                    </li>
-                                    <li>
-                                        <form action="profile.php" method="POST">
                                             <input type="hidden" name="eventId" value="<?php echo $event['id']; ?>">
                                             <input class="dropdown-item btn" name="deleteEvent" type="submit" value="Delete">
                                         </form>
-
                                     </li>
                                 </ul>
 
@@ -312,6 +317,8 @@ foreach ($result as $user) {
     <?php } ?>
 
 
+
+
     <div class="container">
         <div class="row mb-5">
             <form class="d-flex justify-content-center" action="" method="GET">
@@ -328,7 +335,7 @@ foreach ($result as $user) {
     </div>
 
     <?php
-
+    // *************************Delete*******************************//
     if (isset($_POST['deleteJournal'])) {
         $id = $_POST['journalId'];
 
@@ -336,7 +343,6 @@ foreach ($result as $user) {
         $exec = mysqli_query($conn, $query);
         if ($exec > 0) {
             echo "<script>window.location.assign('profile.php?msg')</script>";
-            // header("location : profile.php");
         } else {
             echo "Error" . mysqli_error($conn);
         }
