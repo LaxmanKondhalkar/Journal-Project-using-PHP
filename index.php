@@ -146,7 +146,7 @@
                 <div class="card-body">
 
                     <h5 class="card-title"><?php echo $journal['title']; ?></h5>
-                    <p class="card-text"><?php echo substr($journal['description'], 0,600)." "; ?><?php if(strlen($journal['description']) > 600) {?><a href=class="text-decoration-none">read more....</a> <?php } ?></p>
+                    <p class="card-text"><?php echo substr($journal['description'], 0,600)." "; ?><?php if(strlen($journal['description']) > 600) {?><a href="singleJournal.php?id=<?php echo $journal['journal_id'];?>" class="text-decoration-none">read more....</a> <?php } ?></p>
                     
                 </div>
                 <div class="card-footer d-flex">

@@ -150,9 +150,9 @@
     ?>
 
 <?php
-$query = "select * from diary where user_id=$uId order by date desc";
-$result = mysqli_query($conn, $query);
-foreach ($result as $diary) {
+    $query = "select * from diary where user_id=$uId order by date desc";
+    $result = mysqli_query($conn, $query);
+    foreach ($result as $diary) {
 ?>
     <section id="Posts ">
         <div class="container my-5">
@@ -186,7 +186,7 @@ foreach ($result as $diary) {
                     </div>
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $diary['title'];  ?></h5>
-                        <p class="card-text"><?php echo substr($diary['description'], 0, 600) . " "; ?> <?php if(strlen($diary['description']) > 600) {?><a href=class="text-decoration-none">read more....</a> <?php } ?></p>
+                        <p class="card-text"><?php echo substr($diary['description'], 0, 600) . " "; ?> <?php if(strlen($diary['description']) > 600) {?><a href="singleDiary.php?id=<?php echo $diary['diary_id'];?>" class="text-decoration-none">read more....</a> <?php } ?></p>
                     </div>
                 </div>
             </div>
