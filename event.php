@@ -13,7 +13,7 @@ require "config.php";
 
 ?>
 <!-- title section -->
-<section id="title">
+<!-- <section id="title">
 
     <div class="container">
         <div class="title-container col-lg-7 offset-lg-2 col-xl-7 offset-xl-4 pt-2 ">
@@ -21,7 +21,7 @@ require "config.php";
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi obcaecati dicta sint blanditiis velit?</p>
         </div>
     </div>
-</section>
+</section> -->
 
 <!-- content section -->
 
@@ -150,11 +150,7 @@ foreach ($result as $event) {
                                     </p>
                                 </div>
                         </div>
-                        <!-- <div class="options btn post-options">
-                            <span class="dots"></span>
-                            <span class="dots"></span>
-                            <span class="dots"></span>
-                        </div> -->
+
                     </div>
                     <div class="card-body">
 
@@ -186,10 +182,10 @@ foreach ($result as $event) {
                             <p><?php echo $event['e_desc'] ?></p>
                         </div>
                     </div>
-                    <div class="card-footer d-flex">
+                    <!-- <div class="card-footer d-flex">
                         <div class="likes pe-3 col-md-6 text-center">Likes</div>
                         <div class="comments px-3 col-md-6 text-center">Comments</div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

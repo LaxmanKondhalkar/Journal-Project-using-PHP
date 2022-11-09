@@ -27,7 +27,7 @@
     require('./partials/header.php');
 ?>
 <!-- title section -->
-<section id="title">
+<!-- <section id="title">
 
     <div class="container">
         <div class="title-container col-lg-7 offset-lg-2 col-xl-7 offset-xl-4 pt-2 ">
@@ -35,7 +35,7 @@
             <p>Diaries is personal to every user this will not be shared to anyone else. User can write a diary every day.</p>
         </div>
     </div>
-</section>
+</section> -->
 
 <!-- content section -->
 

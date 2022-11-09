@@ -7,8 +7,8 @@
         $result = mysqli_query($conn, $q);
 
         foreach ($result as $user) {
-            // print_r($user); 
-            if ($email == $user['userEmail'] && $pass == $user['userPass']) {
+            
+            if ($email == $user['userEmail'] && password_verify($pass, $user['userPass'])) {
                 $uId = $user['user_id'];
                 $login = true;
                 session_start(); 
@@ -16,7 +16,7 @@
                 $_SESSION['userId'] = $uId; 
                 echo "<script> window.location.assign('index.php');</script>";
             } else {
-                echo "email or password is wrong try again";
+                echo "Incorrect Password";
             }
         }
     }

@@ -99,7 +99,7 @@
                             echo "Error".mysqli_error($conn); 
                         }
                     }
-                    else if(isset($_POST["reject".$event['id']])){
+                     if(isset($_POST["reject".$event['id']])){
                         $eId = $journal['id']; 
                         $deleteQuery = "DELETE FROM events WHERE id='$eId'"; 
                         $fireDeleteQuery = mysqli_query($conn, $deleteQuery); 

@@ -61,7 +61,7 @@ require "../config.php";
       </div>
     </div>
     <!-- Second Row -->
-    <div class="row mt-5 d-flex justify-content-center ">
+    <!-- <div class="row mt-5 d-flex justify-content-center ">
       <div class="col-xs-12 col-md-4 mx-3 my-2">
         <div class="card">
           <div class="card-body text-center item-bg">
@@ -80,7 +80,7 @@ require "../config.php";
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   
 </section>
 

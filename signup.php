@@ -45,14 +45,14 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
-                                            <label class="form-label" for="form3Example1" pattern="[A-Za-z ]{1,}">First name</label>
-                                            <input type="text" id="form3Example1" name="userFName" class="form-control" />
+                                            <label class="form-label" for="form3Example1" >First name</label>
+                                            <input type="text" id="userFName" name="userFName" class="form-control" pattern="[A-Za-z ]{1,}" required />
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
-                                            <label class="form-label" for="form3Example2" pattern="[A-Za-z ]{1,}">Last name</label>
-                                            <input type="text" id="form3Example2" name="userLName" class="form-control" />
+                                            <label class="form-label" for="form3Example2" >Last name</label>
+                                            <input type="text" id="userLName" name="userLName" class="form-control" pattern="[A-Za-z ]{1,}" required/>
                                         </div>
                                     </div>
                                 </div>
@@ -61,24 +61,24 @@
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
                                             <label class="form-label" for="form3Example3">Phone</label>
-                                            <input type="phone" id="form3Example3" name="userPhone" class="form-control" pattern="[7-9]{1}[0-9]{9}"/>
+                                            <input type="phone" id="userPhone" name="userPhone" class="form-control" pattern="[7-9]{1}[0-9]{9}" required/>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-4">
 
                                         <label for="gender" class="form-label">Gender</label>
                                         <div class="radioButtons">
-                                            <input class="form-check-input" type="radio" name="userGender" value="male" id="flexRadioDefault1">
+                                            <input class="form-check-input" type="radio" name="userGender" value="male" checked id="flexRadioDefault1">
                                             <label class="form-check-label me-2" for="flexRadioDefault1">
                                                 Male
                                             </label>
 
-                                            <input class="form-check-input" type="radio" name="userGender" value="female" id="flexRadioDefault1">
+                                            <input class="form-check-input" type="radio" name="userGender" value="female" >
                                             <label class="form-check-label me-2" for="flexRadioDefault1">
                                                 Female
                                             </label>
 
-                                            <input class="form-check-input" type="radio" name="userGender" value= "other" id="flexRadioDefault1">
+                                            <input class="form-check-input" type="radio" name="userGender" value= "other">
                                             <label class="form-check-label" for="flexRadioDefault1">
                                                 Other
                                             </label>
@@ -90,22 +90,15 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
                                         <label class="form-label" for="form3Example3">Email address</label>
-                                        <input type="email" id="form3Example3" name="userEmail" class="form-control" />
+                                        <input type="email" id="userEmail" name="userEmail" class="form-control" />
                                     </div>
 
                                     <!-- Password input -->
                                     <div class="col-md-6 mb-4">
                                         <label class="form-label" for="form3Example4">Password</label>
-                                        <input type="password" id="form3Example4" name="userPass" class="form-control" />
+                                        <input type="password" id="userPass" name="userPass" class="form-control" required />
                                     </div>
                                 </div>
-                                <!-- First acquiring the user id would be better since there are chance of image duplicacy if we name the image along with the user id it will prevent that from happening. -->
-                                <!-- <div class="row">
-                                    <div class="mb-3">
-                                        <label for="formFile" class="form-label">Add image</label>
-                                        <input class="form-control" name="userImg" type="file" id="formFile">
-                                    </div>
-                                </div> -->
 
                                 <!-- Submit button -->
                                 <div class="row d-flex justify-content-around">
@@ -128,12 +121,11 @@
                                 $userFName = $_POST['userFName'];
                                 $userLName = $_POST['userLName'];
                                 $userEmail = $_POST['userEmail'];
-                                $userPass = $_POST['userPass'];
+                                $userPass = password_hash($_POST['userPass'], PASSWORD_DEFAULT);
                                 $userPhone = $_POST['userPhone'];
                                 $userGender = $_POST['userGender'];
                                 $userStatus = 'unblocked';
                                 $userImage = "user.png";
-
 
                                 $q = "Insert into `user` (`UserFName`,`userLName`,`userEmail`, `userPass`, `userPhone`, `userGender`, `userStatus`, `userImage`) values ('$userFName','$userLName','$userEmail', '$userPass', '$userPhone' , '$userGender' ,'$userStatus' ,'$userImage')";
 
@@ -161,6 +153,8 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="../assets/js/validation.js"></script>
+
 </body>
 
 </html>

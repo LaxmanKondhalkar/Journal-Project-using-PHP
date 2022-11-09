@@ -1,19 +1,19 @@
 <?php
 
-    $page = "index.php";
-    session_start();
+$page = "index.php";
+session_start();
 
-    if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] != true) {
-        header("location: login.php", true);
-        exit();
-    }
-    $uId = $_SESSION['userId'];
+if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] != true) {
+    header("location: login.php", true);
+    exit();
+}
+$uId = $_SESSION['userId'];
 
-    require('./partials/header.php');
-    require "config.php";
-?> 
+require('./partials/header.php');
+require "config.php";
+?>
 <!-- title section -->
-<section id="title">
+<!-- <section id="title">
 
     <div class="container">
         <div class="title-container col-lg-7 offset-lg-2 col-xl-7 offset-xl-4 pt-2 ">
@@ -22,16 +22,16 @@
                 ipsum dolor sit.</p>
         </div>
     </div>
-</section>
+</section> -->
 
 <!-- content section -->
 <?php
-    if(isset($_GET['msg'])){
-        ?>
-        <div class="col-12 alert alert-success my-3"> Journal Posted Successfully.
-</div>
-        <?php
-    }
+if (isset($_GET['msg'])) {
+?>
+    <div class="col-12 alert alert-success my-3"> Journal Posted Successfully.
+    </div>
+<?php
+}
 ?>
 <section id="create-post" class="my-4 p-4">
     <div class="container c-p-container">
@@ -45,7 +45,7 @@
                     <img src="./userProfiles/<?php echo $userImage['userImage'];
                                             } ?>" class="profile-icon rounded-circle img-fluid" alt="icon">
             </div>
-            
+
             <!-- Button trigger modal -->
             <button type="button" class="btn col-8 col-md-8 ms-5 text-center share-post-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Write a journal
@@ -76,26 +76,26 @@
                                 </div>
                             </form>
                             <?php
-                        
-                                $title = mysqli_real_escape_string($conn, (isset($_POST['journalTitle']) ? $_POST['journalTitle'] : ""));
-                                $description = mysqli_real_escape_string($conn, (isset($_POST['journalDescription']) ? $_POST['journalDescription'] : ""));
-                                $status = "pending";
 
-                                if (isset($_POST['journalSubmit'])) {
-                
-                                    $q = "Insert into `journals` (`title`,`description`, `status`, `user_id`) values ('$title','$description', '$status', '$uId')";
+                            $title = mysqli_real_escape_string($conn, (isset($_POST['journalTitle']) ? $_POST['journalTitle'] : ""));
+                            $description = mysqli_real_escape_string($conn, (isset($_POST['journalDescription']) ? $_POST['journalDescription'] : ""));
+                            $status = "pending";
 
-                                    $result = mysqli_query($conn, $q);
+                            if (isset($_POST['journalSubmit'])) {
 
-                                    if ($result > 0) {
-                                        //echo "Journal Posted Successfully";
-                                        echo "<script>window.location.assign('index.php?msg');</script>";
-                                    } else {
-                                        echo "insertion failed <br>";
-                                        echo mysqli_error($conn);
-                                        echo "<br>";
-                                    }
+                                $q = "Insert into `journals` (`title`,`description`, `status`, `user_id`) values ('$title','$description', '$status', '$uId')";
+
+                                $result = mysqli_query($conn, $q);
+
+                                if ($result > 0) {
+                                    //echo "Journal Posted Successfully";
+                                    echo "<script>window.location.assign('index.php?msg');</script>";
+                                } else {
+                                    echo "insertion failed <br>";
+                                    echo mysqli_error($conn);
+                                    echo "<br>";
                                 }
+                            }
                             ?>
                         </div>
                     </div>
@@ -108,55 +108,61 @@
 <!-- Posts Section -->
 <?php
 
-    $q = "SELECT * from journals where status= 'approved' order by date desc";
+$q = "SELECT * from journals where status= 'approved' order by date desc";
 
-    $result = mysqli_query($conn, $q);
+$result = mysqli_query($conn, $q);
 
-    foreach ($result as $journal) {
+foreach ($result as $journal) {
 ?>
-<section id="Posts ">
-    <div class="container my-5">
-        <div class="row">
-            <div class="card post-card">
-                <div class="card-header d-flex">
-                    <!-- <div class="row"> -->
-                    <div class="user-data d-flex">
-                        <?php
-                        $uId = $journal['user_id'];
-                        $query = "select UserFName,userLName,userImage from `user` WHERE user_id= $uId";
-                        $exec = mysqli_query($conn, $query);
+    <section id="Posts ">
+        <div class="container my-5">
+            <div class="row">
+                <div class="card post-card">
+                    <div class="card-header d-flex">
+                        <!-- <div class="row"> -->
+                        <div class="user-data d-flex">
+                            <?php
+                            $uId = $journal['user_id'];
+                            $query = "select UserFName,userLName,userImage from `user` WHERE user_id= $uId";
+                            $exec = mysqli_query($conn, $query);
 
-                        foreach ($exec as $value) {
+                            foreach ($exec as $value) {
 
-                        ?>
-                            <div class="profile-icon-container">
-                                <img src="userProfiles/<?php echo $value['userImage']; ?>" class="profile-icon img-fluid" alt="icon">
-                            </div>
-                            <div class="user-name-j-post">
-                                <p class="pt-2 ps-3 userName fw-semibold">
-                                <?php
-                                echo $value['UserFName'] . " " . $value['userLName'];
-                            }
-                                ?>
-                                </p>
-                            </div>
+                            ?>
+                                <div class="profile-icon-container">
+                                    <img src="userProfiles/<?php echo $value['userImage']; ?>" class="profile-icon img-fluid" alt="icon">
+                                </div>
+                                <div class="user-name-j-post">
+                                    <p class="pt-2 ps-3 userName fw-semibold">
+                                    <?php
+                                    echo $value['UserFName'] . " " . $value['userLName'];
+                                }
+                                    ?>
+                                    </p>
+                                </div>
+                        </div>
+
                     </div>
-                    
-                </div>
-                <div class="card-body">
+                    <div class="card-body">
 
-                    <h5 class="card-title"><?php echo $journal['title']; ?></h5>
-                    <p class="card-text"><?php echo substr($journal['description'], 0,600)." "; ?><?php if(strlen($journal['description']) > 600) {?><a href="singleJournal.php?id=<?php echo $journal['journal_id'];?>" class="text-decoration-none">read more....</a> <?php } ?></p>
-                    
-                </div>
-                <div class="card-footer d-flex">
-                    <div class="likes pe-3 col-md-6 text-center">Likes</div>
-                    <div class="comments px-3 col-md-6 text-center">Comments</div>
+                        <h5 class="card-title"><?php echo $journal['title']; ?></h5>
+                        <p class="card-text"><?php echo substr($journal['description'], 0, 600) . " "; ?><?php if (strlen($journal['description']) > 600) { ?><a href="singleJournal.php?id=<?php echo $journal['journal_id']; ?>" class="text-decoration-none">read more....</a> <?php } ?></p>
+
+                    </div>
+                    <!-- <div class="card-footer d-flex">
+                        <div class="likes pe-3 col-md-6 text-center">
+                            <button type="button" id="likeBtn" class="btn btn-primary">
+                            <!-- <span class="badge text-bg-secondary" id="allLikes"></span>   
+                            Likes
+                            </button>
+                        </div>
+
+                        <div class="comments px-3 col-md-6 text-center">Comments</div>
+                    </div> -->
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
 <?php
 }

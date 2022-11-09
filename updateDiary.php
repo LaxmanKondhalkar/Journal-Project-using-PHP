@@ -27,21 +27,21 @@ foreach ($result as $diary) {
     <section id="updateForm" class="my-5">
         <div class="container">
             <div class="row">
-                <form class="form-floating" action="" method="POST">
-                    <input type="hidden" name="id" value="<?php echo $diary['diary_id']; ?>>
+                <form class="form-floating mb-3" action="" method="POST">
+                    <input type="hidden" name="id" value="<?php echo $diary['diary_id']; ?>">
                     <div class=" form-floating mb-3">
-                    <input type="text" class="form-control" name="diaryTitle" id="floatingInput" spellcheck="false" value="<?php echo $diary['title']; ?>">
-                    <label for="floatingInput">Title</label>
-            </div>
-            <div class="form-floating mb-3">
-                <textarea class="form-control" spellcheck="false" name="diaryDesc" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 200px"><?php echo $diary['description']; ?></textarea>
-                <label for="floatingTextarea2">Diary</label>
-            </div>
+                        <input type="text" class="form-control" name="diaryTitle" id="floatingInput" spellcheck="false" value="<?php echo $diary['title']; ?>">
+                        <label for="floatingInput">Title</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" spellcheck="false" name="diaryDesc" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 200px"><?php echo $diary['description']; ?></textarea>
+                        <label for="floatingTextarea2">Diary</label>
+                    </div>
 
-            <a href="profile.php" type="btn" class="btn btn-danger">Cancel</a>
-            <button type="submit" name="diarySubmit" class="btn btn-primary">Update</button>
-            </form>
-        </div>
+                    <a href="diary.php" type="btn" class="btn btn-danger">Cancel</a>
+                    <button type="submit" name="diarySubmit" class="btn btn-primary">Update</button>
+                </form>
+            </div>
         </div>
     </section>
 

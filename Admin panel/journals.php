@@ -77,6 +77,17 @@ foreach ($result as $journal) {
                         }
                                     
                     }
+                    if(isset($_POST["reject".$journal['journal_id']])){
+                        $jId = $journal['journal_id']; 
+                        $delete = "DELETE FROM journals WHERE journal_id='$jId'"; 
+                        $fireDeleteQuery = mysqli_query($conn, $delete); 
+                        if($fireDeleteQuery > 0){
+                            echo "Journal Removed";
+                        }else{
+                            echo "booo!! Error".mysqli_error($conn); 
+                        }
+                                    
+                    }
                 ?>
             </div>
         </div>
