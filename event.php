@@ -25,6 +25,9 @@ require "config.php";
 
 <!-- content section -->
 
+
+
+
 <section id="create-post" class="my-4 p-4">
     <div class="container c-p-container">
         <div class="create-post-container p-4 d-flex ">
@@ -42,6 +45,10 @@ require "config.php";
             <button type="button" class="btn col-8 col-md-8 ms-5 text-center share-post-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Add an Event
             </button>
+
+
+           
+
 
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -98,7 +105,7 @@ require "config.php";
                                 $InsertQuery = "Insert into `events` (`e_name`, `e_location`,`e_type`, `e_date`, `e_time`, `e_requirements`, `e_desc`,`user_id`)  values('$eName', '$eLocation', '$eType','$eDate','$eTime', '$eRequirements', '$eDesc', '$uId')";
                                 $result = mysqli_query($conn, $InsertQuery);
                                 if ($result > 0) {
-                                    echo "Success";
+                                    echo "<script>window.location.assign('event.php?success');</script>";
                                 } else {
                                     echo mysqli_error($conn);
                                 }
@@ -111,6 +118,20 @@ require "config.php";
         </div>
     </div>
 </section>
+
+
+
+<?php
+            if (isset($_GET['success'])) {
+            ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <!-- <strong>Successfully Posted</strong> Journal is Added Succesfully -->
+                    Event posted Successfully. Admin will verify and approve it soon.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php
+            }
+            ?>
 
 <!-- Posts Section -->
 

@@ -1,5 +1,16 @@
 <?php
 $page = "index.php";
+
+
+session_start();
+
+if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] != true) {
+    header("location: login.php", true);
+    exit();
+}
+$adminId = $_SESSION['adminId'];
+
+
 include 'assets/header.php';
 require "../config.php"; 
 ?>
@@ -55,7 +66,7 @@ require "../config.php";
                 ?>
             </h3>
             <p class="card-text">Pending Events</p>
-            <a href="journals.php" class="btn btn-primary go-to-item-btn">Go to Item</a>
+            <a href="events.php" class="btn btn-primary go-to-item-btn">Go to Item</a>
           </div>
         </div>
       </div>

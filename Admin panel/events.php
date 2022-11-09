@@ -1,5 +1,17 @@
 <?php
     $page = "events.php";
+
+    session_start();
+
+    if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] != true) {
+        header("location: login.php", true);
+        exit();
+    }
+    $adminId = $_SESSION['adminId'];
+    
+
+
+
     include "assets/header.php";
     require '../config.php';
 
@@ -100,7 +112,7 @@
                         }
                     }
                      if(isset($_POST["reject".$event['id']])){
-                        $eId = $journal['id']; 
+                        $eId = $event['id']; 
                         $deleteQuery = "DELETE FROM events WHERE id='$eId'"; 
                         $fireDeleteQuery = mysqli_query($conn, $deleteQuery); 
                         if($fireDeleteQuery > 0){

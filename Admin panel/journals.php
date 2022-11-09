@@ -1,5 +1,16 @@
 <?php
 $page = "journals.php";
+
+
+session_start();
+
+if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] != true) {
+    header("location: login.php", true);
+    exit();
+}
+$adminId = $_SESSION['adminId'];
+
+
 include "assets/header.php";
 require '../config.php';
 

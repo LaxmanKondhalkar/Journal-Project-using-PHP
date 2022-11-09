@@ -1,7 +1,7 @@
-<footer class="pt-3">
-    <div class="container ">
+<footer class=""  style="position : fixed; bottom : 0; width : 100%; ">
+   <!-- <div class="container ">
         <div class="row">
-            <div class="contact-us-form col-11 col-md-5 ">
+             <div class="contact-us-form col-11 col-md-5 ">
                 <h2 class="mb-3">Contact Us</h2>
 
                 <form>
@@ -19,9 +19,9 @@
 
                     <button type="submit" class="btn contact-form-submit-btn">Submit</button>
                 </form>
-            </div>
+            </div> -->
 
-            <div class="social-links col-10 col-md-5 offset-md-2 ">
+            <!-- <div class="social-links col-10 col-md-5 offset-md-2 ">
 
                 <h2 class="mb-3">Social Links</h2>
                 <div class="links">
@@ -74,13 +74,14 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid">
+-->
+     <div class="container-fluid">
         <div class="row mt-4">
             <div class="copyRight text-center text-light">
                 <p>copyright &copy; All rights Reserved.</p>
             </div>
         </div>
-    </div>
+    </div> 
 
 </footer>
 <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
