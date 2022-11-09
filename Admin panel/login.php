@@ -1,3 +1,28 @@
+<?php
+require('../config.php');
+if (isset($_POST['submit'])) {
+    $email = $_POST['email'];
+    $pass = $_POST['pass'];
+
+    $q = "select * from `admin`";
+    $result = mysqli_query($conn, $q);
+
+    foreach ($result as $admin) {
+
+        if ($email == $admin['email'] && $pass == $admin['pass']) {
+            $adminId = $admin['id'];
+            $login = true;
+            session_start(); 
+            $_SESSION['loggedIn'] = true; 
+            $_SESSION['adminId'] = $adminId; 
+            echo "<script> window.location.assign('index.php');</script>";
+        } else {
+            echo "email or password is wrong try again";
+        }
+    }
+}
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -59,28 +84,10 @@
                                     <button type="submit" name="submit" class="btn btn-primary  mb-4 col-md-4">
                                         Sign in
                                     </button>
-                                    
+
                                 </div>
                             </form>
-                            <?php 
-                                    require('../config.php');
-                                    if(isset($_POST['submit'])){
-                                        $email = $_POST['email']; 
-                                        $pass = $_POST['pass']; 
-                                        $q = "select * from `admin`"; 
-                                        $result = mysqli_query($conn, $q); 
-       
-                                       foreach($result as $admin){
-                                     
-                                            if($email == $admin['email'] && $pass == $admin['password']){
-                                                echo "<script> window.location.assign('dashboard.php');</script>";
-                                            }
-                                            else{
-                                                echo "email or password is wrong try again"; 
-                                            }
-                                       }
-                                    }                        
-                                ?>
+
                         </div>
                     </div>
                 </div>
