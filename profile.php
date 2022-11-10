@@ -1,6 +1,6 @@
 <?php
-$page = "profile.php";
 session_start();
+$page = "profile.php";
 
 if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] != true) {
     header("location: login.php", true);

@@ -10,11 +10,12 @@ if (isset($_POST['submit'])) {
     foreach ($result as $admin) {
 
         if ($email == $admin['email'] && $pass == $admin['pass']) {
+            $adminLoggedIn = true;
             $adminId = $admin['id'];
-            $login = true;
             session_start(); 
-            $_SESSION['loggedIn'] = true; 
-            $_SESSION['adminId'] = $adminId; 
+            
+            $_SESSION['adminLoggedIn'] = true; 
+            $_SESSION['adminId'] = $adminId;  
             echo "<script> window.location.assign('index.php');</script>";
         } else {
             echo "email or password is wrong try again";

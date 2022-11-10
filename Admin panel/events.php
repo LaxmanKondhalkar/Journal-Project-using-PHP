@@ -1,16 +1,17 @@
 <?php
+    session_start();
     $page = "events.php";
 
-    session_start();
 
-    if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] != true) {
+    if (!isset($_SESSION['adminLoggedIn']) || $_SESSION['adminLoggedIn'] != true) {
+
+
         header("location: login.php", true);
         exit();
     }
     $adminId = $_SESSION['adminId'];
+    // echo $_SESSION['adminId'];
     
-
-
 
     include "assets/header.php";
     require '../config.php';
