@@ -67,12 +67,13 @@ if (isset($_POST['contactSubmit'])) {
     $email = $_POST['email'];
     $subject = mysqli_real_escape_string($conn, (isset($_POST['subject']) ? $_POST['subject'] : ""));
     $message = mysqli_real_escape_string($conn, (isset($_POST['message']) ? $_POST['message'] : ""));
+    $status = "unread";
 
     if(strlen($subject) < 10 && strlen($message) < 10){
         echo "<script>window.location.assign('contact.php?failed');</script>";
     }
 
-    $insertQuery = "INSERT INTO contact_form (`user_id`, `subject`, `email`, `message`) VALUES ('$uId', '$subject', '$email', '$message')";
+    $insertQuery = "INSERT INTO contact_form (`user_id`, `subject`, `email`, `message`, `status`) VALUES ('$uId', '$subject', '$email', '$message', '$status')";
     $fireQuery = mysqli_query($conn, $insertQuery);
     if ($fireQuery > 0) {
         echo "<script>window.location.assign('contact.php?submitted');</script>";

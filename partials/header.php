@@ -60,10 +60,7 @@
                                 href="contact.php">Contact us</a>
                             </li>
                         </ul>
-
                     </div>
-
                 </div>
             </nav>
-
         </header>

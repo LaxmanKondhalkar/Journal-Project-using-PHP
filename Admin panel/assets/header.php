@@ -46,9 +46,9 @@
                <a class="nav-link px-4  fs-5   <?php // echo ($page == "events.php" ? "active-nav-link" : "" )
                                                 ?> " href="events.php">Events</a> 
             </li>-->
-            <!-- <li class="nav-item ">
-                <a class="nav-link px-4 fs-5   <?php echo ($page == "questions.php" ? "active-nav-link" : "") ?> " href="questions.php">Questions</a>
-              </li> -->
+            <li class="nav-item ">
+                <a class="nav-link px-4 fs-5   <?php echo ($page == "contactRecords.php" ? "active-nav-link" : "") ?> " href="contactRecords.php">Contact Records</a>
+              </li>
             <!-- <li class="nav-item ">
                 <a class="nav-link px-4 fs-5   <?php echo ($page == "answers.php" ? "active-nav-link" : "") ?> " href="answers.php">Answers</a>
               </li> -->
