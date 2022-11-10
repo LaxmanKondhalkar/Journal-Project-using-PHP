@@ -260,3 +260,20 @@ header{
 .dropdown-toggle::after, .dropdown-toggle::before {
     content: none !important;
 }
+
+
+/* category select styling */
+#category{
+    width: 100%;
+    height: 40px;
+    /* border: 1px solid #0000008e !important; */
+    border-radius: 4px;
+}
+.category-items{
+    /* color: #242020;
+     */
+}
+
+#category:focus{
+    border: #534A4A;
+}

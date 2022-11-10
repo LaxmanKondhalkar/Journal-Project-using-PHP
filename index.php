@@ -26,12 +26,15 @@ require "config.php";
 
 <!-- content section -->
 <?php
-if (isset($_GET['msg'])) {
-?>
-    <div class="col-12 alert alert-success my-3"> Journal Posted Successfully.
-    </div>
+    if (isset($_GET['msg'])) {
+    ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Post Added Succesfully. </strong>
+            Admin will review and approve the post soon enough.
+            <a type="button" href="diary.php" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></a>
+        </div>
 <?php
-}
+    }
 ?>
 <section id="create-post" class="my-4 p-4">
     <div class="container c-p-container">
@@ -65,6 +68,22 @@ if (isset($_GET['msg'])) {
                                 <div class="mb-3">
                                     <input type="text" name="journalTitle" spellcheck="false" class="form-control" id="exampleInputText" placeholder="Journal Title">
                                 </div>
+
+                                <!-- drop down -->
+
+                                <select name="category" class="mb-3 border" id="category">
+                                    <option class="category-items" selected disabled>Select a category for your Post</option>
+                                    <option class="category-items" value="journal">Journal</option>
+                                    <option class="category-items" value="blog">Blog</option>
+                                    <option class="category-items" value="article">Article</option>
+                                    <option class="category-items" value="memoir">memoir</option>
+                                    <option class="category-items" value="record">Record</option>
+                                </select>
+                                            
+                                       
+
+                                <!-- Text Area -->
+
                                 <div class="mb-3">
                                     <!-- <label for="message-text" class="col-form-label">Message:</label> -->
                                     <textarea class="form-control" spellcheck="false" name="journalDescription" id="message-text" placeholder="Write journal here..." style="height:200px;"></textarea>
@@ -79,11 +98,12 @@ if (isset($_GET['msg'])) {
 
                             $title = mysqli_real_escape_string($conn, (isset($_POST['journalTitle']) ? $_POST['journalTitle'] : ""));
                             $description = mysqli_real_escape_string($conn, (isset($_POST['journalDescription']) ? $_POST['journalDescription'] : ""));
+                            $category = (isset($_POST['category']) ? $_POST['category'] : "journal");
                             $status = "pending";
 
                             if (isset($_POST['journalSubmit'])) {
 
-                                $q = "Insert into `journals` (`title`,`description`, `status`, `user_id`) values ('$title','$description', '$status', '$uId')";
+                                $q = "Insert into `journals` (`title`,`description`, `status`, `user_id`,`category`) values ('$title','$description', '$status', '$uId','$category')";
 
                                 $result = mysqli_query($conn, $q);
 
