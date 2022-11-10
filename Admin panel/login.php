@@ -48,16 +48,19 @@ if (isset($_POST['submit'])) {
         <section class="text-center mb-5">
             <!-- Background image -->
             <div class="p-5 bg-image" style="
-          background-image: url('https://mdbootstrap.com/img/new/textures/full/171.jpg');
+          background : #534A4A; 
           height: 250px;
           "></div>
             <!-- Background image -->
+            <!-- background-image: url('https://mdbootstrap.com/img/new/textures/full/171.jpg'); -->
 
             <div class="card mx-4 mx-md-5 shadow-5-strong" style="
                       margin-top: -100px;
-                      background: hsla(0, 0%, 100%, 0.8);
+                      background : #d9d9d9;
                       backdrop-filter: blur(30px);
                       ">
+                      <!-- background: hsla(0, 0%, 100%, 0.8); -->
+
                 <div class="card-body py-5 px-md-5">
 
                     <div class="row d-flex justify-content-center">

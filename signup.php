@@ -22,14 +22,14 @@
         <section class="text-center mb-5">
             <!-- Background image -->
             <div class="p-5 bg-image" style="
-          background-image: url('https://mdbootstrap.com/img/new/textures/full/171.jpg');
+            background : #534A4A; 
           height: 250px;
           "></div>
             <!-- Background image -->
 
             <div class="card mx-4 mx-md-5 shadow-5-strong" style="
                       margin-top: -100px;
-                      background: hsla(0, 0%, 100%, 0.8);
+                      background : #d9d9d9;
                       backdrop-filter: blur(30px);
                       ">
                 <div class="card-body py-5 px-md-5">
@@ -45,14 +45,14 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
-                                            <label class="form-label" for="form3Example1" >First name</label>
+                                            <label class="form-label" for="form3Example1">First name</label>
                                             <input type="text" id="userFName" name="userFName" class="form-control" pattern="[A-Za-z ]{1,}" required />
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
-                                            <label class="form-label" for="form3Example2" >Last name</label>
-                                            <input type="text" id="userLName" name="userLName" class="form-control" pattern="[A-Za-z ]{1,}" required/>
+                                            <label class="form-label" for="form3Example2">Last name</label>
+                                            <input type="text" id="userLName" name="userLName" class="form-control" pattern="[A-Za-z ]{1,}" required />
                                         </div>
                                     </div>
                                 </div>
@@ -61,7 +61,7 @@
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
                                             <label class="form-label" for="form3Example3">Phone</label>
-                                            <input type="phone" id="userPhone" name="userPhone" class="form-control" pattern="[7-9]{1}[0-9]{9}" required/>
+                                            <input type="phone" id="userPhone" name="userPhone" class="form-control" pattern="[7-9]{1}[0-9]{9}" required />
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-4">
@@ -73,12 +73,12 @@
                                                 Male
                                             </label>
 
-                                            <input class="form-check-input" type="radio" name="userGender" value="female" >
+                                            <input class="form-check-input" type="radio" name="userGender" value="female">
                                             <label class="form-check-label me-2" for="flexRadioDefault1">
                                                 Female
                                             </label>
 
-                                            <input class="form-check-input" type="radio" name="userGender" value= "other">
+                                            <input class="form-check-input" type="radio" name="userGender" value="other">
                                             <label class="form-check-label" for="flexRadioDefault1">
                                                 Other
                                             </label>
@@ -108,7 +108,7 @@
                                     <div class="signup-text  mb-4 col-md-4">
                                         <p class="mb-0">Already have an Account?</p>
                                         <a href="login.php">Sign in</a>
-                                        
+
                                     </div>
                                 </div>
                             </form>
@@ -130,15 +130,15 @@
                                 $q = "Insert into `user` (`UserFName`,`userLName`,`userEmail`, `userPass`, `userPhone`, `userGender`, `userStatus`, `userImage`) values ('$userFName','$userLName','$userEmail', '$userPass', '$userPhone' , '$userGender' ,'$userStatus' ,'$userImage')";
 
                                 // $conn = exec($q);
-                                $result = mysqli_query($conn, $q); 
-                             
+                                $result = mysqli_query($conn, $q);
+
                                 if ($result > 0) {
                                     echo "<script> window.location.assign('login.php');</script> ";
                                 } else {
                                     echo "insertion failed";
-                                    echo mysqli_error($conn); 
-                                    echo "<br>"; 
-                                    print_r($result); 
+                                    echo mysqli_error($conn);
+                                    echo "<br>";
+                                    print_r($result);
                                 }
                             }
                             ?>
