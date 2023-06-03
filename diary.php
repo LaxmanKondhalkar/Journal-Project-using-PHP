@@ -117,7 +117,7 @@
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <!-- <strong>Successfully Posted</strong> Journal is Added Succesfully -->
             Diary Added Succesfully.
-            <a type="button" href="diary.php" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></a>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
 <?php
     }
@@ -130,13 +130,13 @@
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <!-- <strong>Successfully Posted</strong> Journal is Added Succesfully -->
                 Diary updated successfully
-            <a type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></a>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
 <?php
     }
 ?>
 
-    <!-- For successfully Deleted. Message -->
+<!-- For successfully Deleted. Message -->
 <?php
     if (isset($_GET['deleted'])) {
     ?>

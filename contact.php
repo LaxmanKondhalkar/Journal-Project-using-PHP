@@ -13,63 +13,63 @@ require "config.php";
 ?>
 
 <?php
-    if (isset($_GET['submitted'])) {
+if (isset($_GET['submitted'])) {
     ?>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Message Sent Successfully</strong>
-            We'll contact you back soon.
-            <a type="button" href="diary.php" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></a>
-        </div>
-<?php
-    }
-?>
-<?php
-    if (isset($_GET['failed'])) {
-    ?>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Please Enter meaningful message.</strong>
-
-            <a type="button" href="diary.php" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></a>
-        </div>
-<?php
-    }
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Message Sent Successfully!</strong> We'll contact you back soon.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <?php
+}
 ?>
 
-    <section id="updateForm" class="my-5">
-        <div class="container">
-            <div class="row">
-                <form class="form-floating mb-3" action="" method="POST">
-                    <div class=" form-floating mb-3">
-                        <input type="email" class="form-control" name="email" id="floatingInput" spellcheck="false" required>
-                        <label for="floatingInput">Email</label>
+<?php
+if (isset($_GET['failed'])) {
+    ?>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Please Enter a Meaningful Message!</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <?php
+}
+?>
+
+<section id="updateForm" class="my-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <form class="mb-3" action="" method="POST">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" name="email" id="email" spellcheck="false" required>
                     </div>
-                    <div class=" form-floating mb-3">
-                        <input type="text" class="form-control" name="subject" id="floatingInput" spellcheck="false" required>
-                        <label for="floatingInput">Subject</label>
+                    <div class="mb-3">
+                        <label for="subject" class="form-label">Subject</label>
+                        <input type="text" class="form-control" name="subject" id="subject" spellcheck="false" required>
                     </div>
-                    <div class="form-floating mb-3">
-                        <textarea class="form-control" spellcheck="false" required name="message" placeholder="Write Your Message here...." id="floatingTextarea2" style="height: 200px"></textarea>
-                        <label for="floatingTextarea2">Message</label>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea class="form-control" spellcheck="false" required name="message" id="message" placeholder="Write Your Message here...." style="height: 200px"></textarea>
                     </div>
 
-                    <button type="reset" class="btn btn-danger">Reset</button>
-                    <button type="submit" name="contactSubmit" class="btn btn-primary">Submit</button>
+                    <div class="d-flex justify-content-end">
+                        <button type="reset" class="btn btn-secondary me-2">Reset</button>
+                        <button type="submit" name="contactSubmit" class="btn btn-primary">Submit</button>
+                    </div>
                 </form>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-
-
-<?php 
-
+<?php
 if (isset($_POST['contactSubmit'])) {
     $email = $_POST['email'];
     $subject = mysqli_real_escape_string($conn, (isset($_POST['subject']) ? $_POST['subject'] : ""));
     $message = mysqli_real_escape_string($conn, (isset($_POST['message']) ? $_POST['message'] : ""));
     $status = "unread";
 
-    if(strlen($subject) < 10 && strlen($message) < 10){
+    if (strlen($subject) < 10 && strlen($message) < 10) {
         echo "<script>window.location.assign('contact.php?failed');</script>";
     }
 
@@ -78,10 +78,9 @@ if (isset($_POST['contactSubmit'])) {
     if ($fireQuery > 0) {
         echo "<script>window.location.assign('contact.php?submitted');</script>";
     } else {
-        echo "There is an error : " . mysqli_error($conn);
+        echo "There is an error: " . mysqli_error($conn);
     }
 }
 
-include "./partials/footer.php";
-
+require "./partials/footer.php";
 ?>
